@@ -1,0 +1,4095 @@
+
+DAY 1
+
+1.select umpire_name,umpire_country,matches_controlled from umpire order by umpire_name asc;
+
+2.select count(umpire_country) as UmpiresTotalCount_EngAus from umpire where umpire_country='England' or umpire_country= 'Australia' ;
+
+
+3.select umpire_name,matches_controlled from umpire where umpire_name='Gamini Silva';
+
+4.select umpire_name  from umpire where matches_controlled=(select max(matches_controlled) from umpire);
+
+
+5.select umpire_name,matches_controlled from umpire  where matches_controlled between 30 and 60;
+
+6.select umpire_name,umpire_country from umpire where umpire_country like '%ia';
+
+7.select umpire_name, umpire_country,reverse( umpire_country) as countryname_reversed from umpire where umpire_name not like  's%';
+
+8.select umpire_name, umpire_country,if(umpire_country like '%a',left(umpire_country,length(umpire_country)-1),umpire_country) as countryname_new from umpire;
+
+
+9.select count(match_date) as TotalMatches_Period  from matches where match_date between '2015-06-10' and '2016-04-10' ;
+
+
+10.select count(match_date) as matchescount_april  from matches where month( match_date) = '04';
+
+
+11.select venue_id,count(match_id) as numberofmatches_played from matches group by venue_id order by match_id desc;
+
+
+12.select count(team_type) as  TotalNoTeams_domestic from team where team_type='Domestic';
+
+
+13.select coach_country as country from coach where coach_country like 's%a';
+
+
+14.select players_name as name,players_age as Agemorethan30 from players where players_age > 30 order by players_age asc;
+
+
+15.select players_name as name,players_age as Age from players where players_name like '%am%' and players_age< 27;
+
+
+16.select upper(umpire_name) as uppercase,matches_controlled from umpire where matches_controlled !=20;
+
+
+17.select match_id from matches where match_date not between '2015-01-01' and '2016-12-31';
+
+
+18.select replace(umpire.umpire_name,' ','') as ResultString from umpire where umpire_country='England';
+
+
+19.select round(avg(matches_controlled)) as Average from umpire where umpire_country='Australia';
+
+
+20.select truncate(avg(matches_controlled),7) as truncatedValue from umpire where umpire_country='South Africa';
+
+
+21.select year(current_date())-players_age-1 as yearOfBirth,players_name as name from players where players_age> 27;
+
+
+22.select team_name as Team from team where team_name like '_o%';
+
+
+23.select players_name, if(players_age>25,'Qualified for Squad','Not Qualified') as Qualified_Status  from players;
+
+
+24.select coach_country from coach union all select team_country from team as Coach_Country ;
+
+
+25.select team_country as foreignteamname  from team  where team_country !='India';
+
+
+26.select players_name as Name,players_age as Age from players where players_age not between '26' and '35';
+
+
+27.select ceil(avg(players_age))  as resultant from players where players_age between '25' and '45';
+
+
+28.
+select concat('"',players_name,'"','--->',"'",players_age,"'") as  concatenation from players;
+
+29.select * from players where players_name like '%v%' or players_name like '%w%' or players_name like '%x%';
+
+
+30.select  max(matches_controlled) as maxmatchcontrolled  ,umpire_country as country,umpire_name as Nameofumpire from umpire where umpire_country not like 's%'  group by umpire_country ;
+
+
+         DAY 2
+
+
+1.select count(match_id) as playersplayedlist from scorecard where match_id=1 and scorecard_batsmanorder>0 and scorecard_isout!=0;
+
+
+2.select * from venue where venue_city='Delhi' and venue_capacity > '50000';
+
+
+3.select venue_id,venue_country  from venue where venue_country like 'e%';
+
+
+4.select venue_city from venue where venue_country='india';
+
+
+5.select distinct tournament_location from tournament;
+
+6.select tournament_name from tournament where tournament_location='England';
+
+
+7.select venue_name from venue order by venue_name asc;
+
+
+8.select max(venue_capacity) as MaximumVenueCapacity from venue;
+
+
+9.select venue_name,venue_capacity from venue  order by venue_capacity desc limit 3;
+
+
+10.select tournament_name,min(tournament_startdate) from tournament;
+
+
+11.select count(players_id) as TotalDomesticPlayers from players where players_type like '%domestic%';
+
+
+
+12.select venue_city as venuecitiesinaustralia from venue where venue_country='australia';
+
+
+13.select venue_name,venue_capacity from venue order by venue_capacity desc;
+
+
+14.select  venue_country,count(venue_country) as venuecounts from venue group by venue_country;
+
+
+15.select replace(tournament_name,' ','_') as tournament from tournament;
+
+
+16.select sum(venue_capacity) from venue where venue_country='india';
+
+
+17.select tournament_name,dayname(tournament_startdate) from tournament;
+
+
+18.select tournament_name,date_sub(tournament_startdate , interval 1 day) as PreviousDateofTournament from tournament;
+
+
+19.select current_timestamp()as 'current date &time';
+
+
+20.select tournament_name,monthname(tournament_startdate) as startmonth,monthname(tournament_enddate) as endmonth from tournament;
+
+
+21.select abs(avg(venue_capacity)) as ObsoluteAverageVenueCapacity from venue;
+
+
+22.select teammapping_id,players_id from teammapping where teammapping_domestic is null or teammapping_international is null;
+
+
+23.select avg(venue_capacity) as AvgVenuecapacityOfAustralia from venue where venue_country='australia';
+
+
+24.select venue_name from venue where venue_country not like 'e%';
+
+
+25.select venue_country,min(venue_capacity) as venue_capacity from venue;
+
+
+26.select tournament_name from tournament where tournament_name like '%t20%';
+
+
+27.select replace(venue_country,'India','hindustan') as venue_country,  venue_id, venue_city  from venue where venue_country='India';
+
+
+28.select count(tournament_startdate) as 'NoofTournament2015-17' from tournament where tournament_startdate between '2015-01-01' and '2017-12-31' ;
+
+
+29.select tournament_name from tournament where tournament_location='England' or tournament_startdate between '2010-01-01' and '2020-12-31';
+
+
+30.select count(match_date) as 'TotalMatches_Period' from matches where match_date between '2015-06-10' and '2016-04-10'; 
+
+
+              
+
+
+                        DAY 3
+
+1.select umpire_country  from umpire join matches on umpire.umpire_id=matches.umpire_id where match_date ='2013-10-20';
+
+
+2.Select count(match_id) as 'TOTALMATCHES_T20WorldCup' from matches join tournament on matches.tournament_id=tournament.tournament_id where tournament_name='T20 World Cup';
+
+
+3.Select count(match_id) as 'TotalMatches_India' from matches join tournament on  matches.tournament_id=tournament.tournament_id where tournament_location='India';
+
+4.select count(tournament_id) as “TotalMatches_KKR” from tournament b join team a  where b.tournament_name='Indian Premier League'and a.team_name='Kolkata Knight Riders' ;
+
+
+5.select match_date from matches join venue on matches.venue_id=venue.venue_id where venue_name='Melbourne Cricket Ground';
+
+6.select players_name as 'players not out' ,team_name from players join scorecard join team on players.players_id=scorecard.players_id and team.team_id=scorecard.team_id where scorecard_isout!='0' and match_id='1';
+
+
+7.select (select team_name  from team  join matches on team.team_id=matches.team1_id  where match_id='1' )as team1,(select team_name  from team  join matches on team.team_id=matches.team2_id where match_id='1') as team2;
+
+
+8.select players_name,team_name,wicket_taken from players join team join wicket on team.team_id=wicket.team_id and players.players_id=wicket.players_id where wicket_taken!='0' and match_id='1';
+
+
+9.select players_name as players from players join team join scorecard on team.team_id=scorecard.team_id and players.players_id=scorecard.players_id where team.team_id='4' and match_id='1' order by players_name desc;
+
+10.select avg(scorecard_runsscored) as 'average score',team_name as team from scorecard s join team t on t.team_id=s.team_id where t.team_id=1 and s.match_id=1 union select avg(scorecard_runsscored) as 'average score',team_name as team from scorecard s join team t on t.team_id=s.team_id where t.team_id=4 and s.match_id=1;
+
+11.select m.match_id,p.players_id,p.players_name,w.wicket_taken from wicket w join matches m join players p on p.players_id=w.players_id and m.match_id=w.match_id where w.wicket_taken>=2 and m.match_id=1; 
+
+
+12.select u.umpire_id,u.umpire_name,u.umpire_country,u.matches_controlled,m.match_id,m.match_date,m.tournament_id,m.venue_id,m.umpire_id,m.team1_id,m.team2_id from umpire u left outer join matches m on u.umpire_id=m.umpire_id ;
+
+
+13.select concat(v.venue_name,',',v.venue_city,',',v.venue_country) as “Match_VenueDetails” from venue v join matches m on m.venue_id=v.venue_id where match_date='2016-04-20';
+
+
+14.select p.players_name,max(s.scorecard_noofballsfaced) as “maxballs_faced” from players p join scorecard s join tournament t on s.players_id=p.players_id where tournament_name='Indian Premier League'
+
+
+15.select p.players_name,s.match_id,s.scorecard_runsscored,s.scorecard_noofballsfaced,s.scorecard_isout,s.scorecard_batsmanorder from players p  join scorecard s join tournament t on p.players_id=s.players_id where (t.tournament_name="T20 World Cup" or  t.tournament_name like "ICC Champions Trophy") and s.scorecard_runsscored > '50' group by players_name;
+
+
+16.select p.players_name,count(s.scorecard_isout) as “totalcount_notout” from players p join scorecard s join tournament t join matches m on s.players_id=p.players_id and s.match_id=m.match_id and m.tournament_id=t.tournament_id where t.tournament_name='Indian Premier League' and s.scorecard_isout='1' group by p.players_name order by count(s.scorecard_isout) desc ;
+
+
+17.select p.players_name,s.scorecard_batsmanorder as 'PlayerName_BattingOrder2' from players p join scorecard s on s.players_id=p.players_id where s.match_id='4' and s.scorecard_batsmanorder='2' and s.team_id='1';
+
+
+18.select m.tournament_id,t.tournament_name,v.venue_country,m.match_date from tournament t join venue v join matches m on t.tournament_id=m.tournament_id and v.venue_id=m.venue_id where t.tournament_location='India' and m.match_date between '2010-01-01' and '2020-12-31';
+
+19.
+
+
+20.select m.match_id,v.venue_id,v.venue_country,m.match_date,t.tournament_location from tournament t join venue v join matches m on t.tournament_id=m.tournament_id where  m.match_date between '2016-04-05' and '2016-04-20' group by match_id;
+
+21.select m.match_id,v.venue_id,v.venue_country,m.match_date from  venue v join matches m on m.venue_id=v.venue_id where v.venue_country='Australia' and  m.match_date between '2015-04-10' and '2015-07-30';
+
+
+22.select t.teammapping_id,p.players_name,p.players_age,p.players_type from players p join teammapping t on p.players_id=t.players_id where t.teammapping_domestic=6;
+
+
+
+23.select  abs(timestampdiff(day,(select tournament_startdate from tournament where tournament_name='Indian Premier League' ),(select tournament_enddate from tournament where tournament_name='T20 World Cup'))) as 'totaldays',abs(timestampdiff(year,(select tournament_startdate from tournament where tournament_name='Indian Premier League' ),(select tournament_enddate from tournament where tournament_name='T20 World Cup'))) as 'year', abs(timestampdiff(month,(select tournament_startdate from tournament where tournament_name='Indian Premier League' ),(select tournament_enddate from tournament where tournament_name='T20 World Cup'))%12) as 'month', abs(timestampdiff(day,(select tournament_startdate from tournament where tournament_name='Indian Premier League' ),(select tournament_enddate from tournament where tournament_name='T20 World Cup'))%365) as 'day' from tournament limit 1;
+
+
+24.select concat(sum(scorecard_runsscored)-sum(scorecard_noofballsfaced),'runs') from scorecard  where match_id='4' and team_id='1';
+
+
+
+25.select p.players_id,count(w.wicket_taken) as countof2pluswickets ,p.players_name from players p join wicket w on w.players_id=p.players_id where w.wicket_taken>='2' group by p.players_id
+
+
+26.select t.team_name as 'Teams played in T20 world cup' from team  t join tournament a join matches m on (t.team_id=m.team1_id or t.team_id=m.team2_id) and (a.tournament_id=m.tournament_id) where a.tournament_name='T20 World Cup' group by t.team_id
+
+
+27.select m.teammapping_id, t.team_name as ReplacedTeamName,p.players_id,p.players_name from teammapping m join team t join scorecard s join players p on p.players_id=m.players_id and t.team_id=s.team_id  where m.teammapping_international='2' and t.team_country='Australia' group by m.teammapping_id
+
+
+28.select p.players_id,p.players_name,w.wicket_taken from wicket w right join players p on w.players_id=p.players_id  and team_id='1' group by players_id limit 11
+
+
+29.select group_concat('In ',s.match_id,' ',p.players_name,' ','have scored',' ',s.scorecard_runsscored) from players p join scorecard s on s.players_id=p.players_id where s.match_id='7' and s.scorecard_runsscored<='150'
+ order by p.players_id desc;
+
+30.select max(if(m.matchsummary_battingfirst=m.matchsummary_winningteam,'batting','bowling')) as 'maximum won category' from matchsummary m join venue v join matches a on a.match_id=m.match_id and a.venue_id=v.venue_id where v.venue_country='England' ;
+
+
+
+                  DAY 4
+
+1.select umpire_name,if(umpire_country like 'India','Kenya',umpire_country) as 'country_new' from umpire;
+
+
+2.select umpire_name,umpire_country,reverse(umpire_country) as 'countryname_reversed' from umpire where umpire_name like 's%'
+
+
+3.select umpire_name,umpire_country,if(umpire_country like 's%',right(umpire_country,length(umpire_country)-1),umpire_country) as 'countryname_new' from umpire
+
+
+4.select umpire_name,umpire_country,substring_index(umpire_name,' ',-1) as umpirename_new from umpire
+
+
+5.select abs((select sum(matches_controlled) from umpire where umpire_country='South Africa')-(select sum(matches_controlled) from umpire where umpire_country='Australia')) as resultant 
+
+
+6.select concat(upper(substring(tournament_name,1,3)),'-',upper(substring(tournament_location,1,3))) from tournament
+
+
+7.select tournament_name,if(dayname(tournament_startdate)='monday','true','false') as 'Ismonday' from tournament
+
+
+8.select if((select umpire_country from umpire where umpire_name='suresh shastri')=(select umpire_country from umpire where umpire_name='Nitin Menon'),'0','-1') as country_cmp from umpire limit 1
+
+
+9.select sum(s.matchsummary_firstinnings + s.matchsummary_secondinnings) as “TotalRuns_Tournament” from matchsummary s join matches m join tournament t on s.match_id=m.match_id and m.tournament_id=t.tournament_id where tournament_name ='Indian Premier League'
+
+
+10.select concat('In Match','  ',s.match_id,'  ',p.players_name,'  ','have scored','  ',s.scorecard_runsscored) as details from scorecard s join players p on s.players_id=p.players_id
+
+
+11.select umpire_name from umpire u join matches m join tournament t on u.umpire_id=m.umpire_id and m.tournament_id=t.tournament_id where t.tournament_name='ICC champions trophy'
+
+
+12.
+
+
+13.select p.players_name,s.match_id,s.scorecard_runsscored,s.scorecard_noofballsfaced,if(s.scorecard_isout='0','out','not out') as 'scorecard_isout',scorecard_batsmanorder from scorecard s join players p join matches m join tournament t on s.players_id=p.players_id and s.match_id=m.match_id and m.tournament_id=t.tournament_id where s.scorecard_runsscored < 10 and tournament_name='T20 World Cup'
+ 
+
+14.select (select count(scorecard_runsscored) FROM scorecard where scorecard_runsscored >= '50' and scorecard_runsscored <='100') as 'TotalCount_50s' , (select count(scorecard_runsscored) FROM scorecard where scorecard_runsscored >= '100') as 'TotalCount_100s' from scorecard s limit 1
+
+
+15.select sum(matchsummary_firstinnings) as “TotalRuns_FirstInnings” from matchsummary s join matches m join tournament t on s.match_id=m.match_id and m.tournament_id=t.tournament_id where tournament_name!='ICC Champions Trophy'
+
+
+16.select abs(timestampdiff(day,(select tournament_startdate from tournament where tournament_name='T20 world cup'),(select tournament_enddate from tournament where tournament_name='T20 world cup'))) as totaldays ,abs(timestampdiff(week,(select tournament_startdate from tournament where tournament_name='T20 world cup'),(select tournament_enddate from tournament where tournament_name='T20 world cup'))) as weeks, abs(timestampdiff(day,(select tournament_startdate from tournament where tournament_name='T20 world cup'),(select tournament_enddate from tournament where tournament_name='T20 world cup'))%7) as days,tournament_startdate as d1,tournament_enddate as d2,tournament_location as location from tournament where tournament_name='T20 World Cup'
+
+
+17.select coach_name as coach  from coach c join team t join scorecard s on c.coach_id=t.coach_id and t.team_id=s.team_id where scorecard_runsscored='110' and match_id='4'
+
+
+18.select players_name as NotoutPlayers from players p join scorecard s join matches m join tournament t on p.players_id=s.players_id and s.match_id=m.match_id and m.tournament_id=t.tournament_id where scorecard_isout='1' and tournament_name='Indian Premier League' group by p.players_id order by p.players_id
+
+
+19.
+
+20.select players_name as ' man of match' ,max(scorecard_runsscored) as score from scorecard s join players p on s.players_id=p.players_id where s.match_id='1' and s.team_id='4' 
+
+
+21.select group_concat('In',' ','match',' ',s.match_id,' ',p.players_name,' ','have scored',' ',s.scorecard_runsscored) as details from players p join scorecard s join matches m on p.players_id=s.players_id and m.match_id=s.match_id where s.match_id='1' and s.scorecard_runsscored<50 group by s.scorecard_runsscored order by s.scorecard_batsmanorder desc
+
+
+22.select group_concat('In',' ','match',' ',m.match_id,' ',p.players_name,' ','have wicket taken',' ',w.wicket_taken) as details from players p join matches m join wicket w on p.players_id=w.players_id and m.match_id=w.match_id where w.wicket_taken<10
+
+
+23.
+
+24.select p.players_name as 'minimumwickettaken',players_id from players p join wicket w join matches m on w.match_id=m.match_id and p.players_id=w.players_id group by players_name having sum(w.wicket_taken)='1' order by p.players_id
+
+
+25.select venue_id,s.match_id,avg(wicket_taken) as 'wicket taken' ,avg(scorecard_runsscored) as score from scorecard s join matches m join wicket w on s.match_id=w.match_id and w.match_id=m.match_id where venue_id='10' 
+
+
+26.
+
+27.select team_name,count(team_id) as count from matchsummary s join matches m join venue v join team t on s.match_id=m.match_id and m.venue_id=v.venue_id and s.matchsummary_winningteam=t.team_id where venue_name='old trafford'
+
+
+28.
+
+29.
+
+30.
+
+
+                   JAVA
+4.public class ClassA2 {
+          int decibel(int hertz)
+}
+7.
+public class UserCode {
+public static int sumOfNumbers(int a,int b)
+{
+	return a+b;
+}
+}
+8.
+public class UserCode {
+
+	public static String findEvenOrOdd(int n) {
+               if(n%2==0){
+		 return "even";
+		}	 
+		 else
+        return "odd";
+	}
+
+}
+9.public class UserCode {
+	
+	public static int checkVowels(char c)
+	{
+	if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'|| c=='A'||c=='E'||c=='I'||c=='O'||c=='U' )
+		return 1;
+	else
+		return -1;
+	}
+}
+10.public class UserCode {
+	
+	public static int factorial(int a)
+	{   int fact =1,i;
+		for(i=1;i<=a;i++){
+			fact=fact*i;
+			}
+		return  fact;
+	}
+
+}
+11.
+public class UserCode {
+
+	public static int findMinValue(int a, int b, int c) {
+        if(a<b && a<c)
+        	return a;
+        else if(b<c)
+		return b;
+        else
+        	return c;
+	}
+
+}
+12.public class UserCode {
+
+	public static int findNthFibonacciNumber(int n) {
+		int n1=0,n2=1,n3=0;
+		if (n<= 1)
+				return 0;
+			else
+			{
+	            for (long i = 0; i < n - 2; i++)
+	            {
+	                n3=n2+n1;
+	                n1=n2;
+	                n2=n3; 
+	            }
+	        }  return n2;
+	}
+}
+13.public class UserCode {
+
+	public static int primeNumbers(int n) {
+	    if(n<=1)
+			 return -1;
+		 for(int i=2;i<n;i++)
+			 if(n%i==0)
+				 return -1;
+			return 1;
+		  }
+}    
+
+14.public class UserCode {
+	public static int reverseNumber(int number){
+       int rev = 0;
+
+        for(;number != 0; number /= 10) {
+            int digit = number % 10;
+            rev = rev * 10 + digit;
+        }
+        return rev;
+    }
+
+}
+15.public class UserCode {
+	public static int palindromeNumber(int num)
+	{
+        while(num>0)
+		{   int rev=0,m;
+		    m=num;
+			for(;num!= 0; num/= 10) {
+            int digit = num% 10;
+            rev = rev * 10 + digit;
+         }
+			
+		   if(rev==m)    
+			return 1;   
+	 }
+		return -1;
+	}}
+16.  int sum = 0; 
+    while (n > 0 || sum > 10)  
+        { 
+            if (n == 0) { 
+                n = sum; 
+                sum = 0; 
+            } 
+            sum += n % 10; 
+            n /= 10; 
+        } 
+        return sum;
+17.import java.util.*;
+public class UserCode {
+	public static int leapYear(String s) {
+		int b=Integer.parseInt(s);
+		if(b%4==0 && b%100!=0 || b%400==0)
+			return 1;
+		if(b%100==0 && b%400!=0)
+			return 2;
+		else 
+			return -1;
+			}}
+18.public class UserCode {
+
+	public static int findNoOfElementsInArray(int[] n) {
+		int count = 0;
+		      for(int i : n)
+		      {
+		         if(i > 0)
+		         {
+		            count++;
+		         }
+		      }
+		      return count;
+	}
+
+}
+19.public class UserCode {
+	public static int sumOfNumbers(int a[],int n)
+	{
+			int sum=0;
+			for(int i=0;i<n;i++)
+		      sum+=a[i];
+		     return sum;
+			}
+		}
+
+20.public class UserCode {
+
+	public static boolean checkForArmstrongNum(int n) {
+	    int c=0,a,temp;  
+	    temp=n;  
+	    while(n>0)  
+	    {  
+	    a=n%10;  
+	    n=n/10;  
+	    c=c+(a*a*a);  
+	    }  
+	    if(temp==c)  
+	      return true;  
+	    else  
+	    	return false;
+}
+
+}
+21.public class UserCode {
+public static long find_ncr(int n, int r) {
+		long ncr = factorial(n)/(factorial(r)*factorial(n-r));
+		   return ncr;
+		}
+	public static long find_npr(int n, int r) {
+		long npr = factorial(n)/(factorial(n-r));
+		   return npr;
+		} 
+	public static long factorial(int n) {
+		 int i,factorial=1;
+	     for(i=1;i<=n;i++)
+	     {
+	         factorial=factorial*i;
+	     } 
+	     return factorial;
+		
+		}
+}
+22.import java.util.Scanner;
+public class UserCode {
+	public static int findHCF(int x,int y)
+	{       int t;
+		   while(y != 0)
+	        {
+	            t = y;
+	            y = x%y;
+	            x = t;
+	        }
+		return x;
+	      }
+	public static int findLCM(int x,int y)
+	{
+		int lcm;
+		lcm = (x*y)/findHCF(x,y);
+	        return lcm;
+	}
+}
+23.public class UserCode {
+	public static int perfectNumber(int n) {
+		int sum=0;
+		   for(int i = 1; i < n; i++)
+	        {
+	            if(n % i == 0)
+	            {
+	                sum = sum + i;
+	            }
+	        }
+	        if(sum == n)
+	        {
+	           return 1;
+	        }
+	        else
+	        {
+	            return -1;
+	        }    
+	    }
+	
+
+}
+24.import java.util.*;
+
+public class UserCode {
+	public static int avgOfMaxandMinNoinArray(int[] a) {
+		/*
+		 * Find the average of the maximum and minimum number in an integer array
+		 */
+		int n =a.length,min = 0,max = 0,avg;
+		int res= a[0]; 
+		    for (int i = 1; i < n; i++) 
+		        min =Math.min(res, a[i]); 
+		   for (int i = 1; i < n; i++) 
+		        max=Math.max(res, a[i]); 
+		     avg=(min+max)/2;
+		return avg;
+				
+	}
+
+}2
+
+
+
+public class CarDetails {
+    public int carID = 1;
+    public String carName = "Alto";
+    public String  carType = "hatchback";
+     public double carPrice = 45000.00;
+   public CarDetails(int carID,String carName,String  carType,double carPrice)  {
+	   this.carID=carID;
+	   this.carName=carName;
+	   this.carType=carType;
+	   this.carPrice=carPrice;
+   }
+}
+package max;
+
+public class A {
+  static int a=100;
+  static int b=10;
+  static int c=102;
+  
+  
+  public static double data(){
+	  double d= Math.max(b, c);
+
+	  return d+(++a);
+	
+  }
+  public double funcn(){
+	  return data();
+  }
+}
+
+.....................................................................................
+public class Employee {
+     int empNo;
+     String name;
+     String city;
+	public int getEmpNo() {
+		return empNo;
+	}
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+     
+  public String Employee(){
+	  this.empNo=empNo;
+	  this.name=name;
+	  this.city=city;
+ 
+ String toString()
+	 return ("Name  is :"+name +"EmpployeeNO is :"+Integer.toString(empNo) +"City is : "+city);
+	  
+  }
+     
+}
+
+......................................................................................
+
+public class Encaps {
+	String name;
+	int roll;
+	int age;
+	public String getName() {
+		return name;
+	}
+	public String setName(String name) {
+		this.name = name;
+		return name;
+	}
+	public int getRoll() {
+		return roll;
+	
+	}
+	public int setRoll(int roll) {
+		this.roll = roll;
+		return roll;
+	}
+	public int getAge() {
+		return age;
+	}
+	public int setAge(int age) {
+		this.age = age;
+		return age;
+	}
+	public class Mainmethod {
+
+		public  void main(String[] args) {
+		
+	       Encaps a=new Encaps();
+	       
+	       a.setName("beni");
+	       a.setRoll(01);
+	       a.setAge(21);
+	       a.getName();
+	       a.getRoll();
+	       a.getAge();
+		}
+
+	}
+}
+
+
+...............................................................................
+
+public class Animal {
+
+ String run(){
+	 return "Animal has four legs";
+ }
+}
+class Dog extends Animal{
+	String bark(){
+		
+		return "Dog is barking";
+	}
+}
+class BabyDog extends Dog{
+	
+	String drink(){
+		return "BabyDog drinks milk";
+	}	
+	public static void main(String[] args){
+			BabyDog a=new BabyDog();
+			a.run();
+			a.bark();
+			a.drink();
+			
+		}
+		
+		
+	}
+
+................................................................................
+
+public class Animal {
+ protected int numOfAnimals;
+ 
+ public Animal(){
+	 numOfAnimals=2;
+ }
+ public void legs(){
+	 
+ }
+}
+class Dog extends Animal{
+	protected int numOfDogs;
+	
+	public Dog(){
+		numOfDogs=4;
+	}
+	public void bark(){
+		
+	}
+	
+}
+
+class BabyDog extends Dog{
+	protected int numOfBabyDogs;
+	public BabyDog(){
+		numOfBabyDogs=5;
+	}
+	public void drink(){
+		
+	}
+	
+}
+class MyMain extends BabyDog{
+	int total;
+	
+	public MyMain(){
+		super();
+		total=numOfBabyDogs+numOfDogs+numOfAnimals;
+		 
+	}
+public void main(String[] args) {
+	System.out.println(total);
+}
+}
+
+......................................................................
+
+
+
+public class Flight {
+
+	protected String flightName;
+	protected int flightno;
+	
+	
+	public Flight(String flightName,int flightno){
+		
+	}
+}
+class Pilot extends Flight{
+	String name;
+
+	public Pilot(String name){
+	   super("jet",102);
+	}
+	public String displayDetails(){
+		return name.toUpperCase()+flightName.toLowerCase();
+	}
+		public static void main(String[] args){
+			
+		Pilot a=new Pilot("jet");
+		
+			
+		}
+	}
+
+
+
+..............................................................
+
+
+INTERFACE
+
+
+interface interfaceA{
+	public int getArea(int l,int b);
+}
+
+interface interfaceB{
+	public int getPerimeter(int l,int b);
+}
+public class A implements interfaceA,interfaceB{
+  int l,b;
+  
+  public int getArea(int l,int b){
+	  return l*b;
+  }
+
+  public int getPerimeter(int l,int b){
+	  return 2*l+2*b;
+	}
+	
+public A(int i,int b){
+		this.getArea(l, b);
+		this.getPerimeter(l, b);
+		
+}
+	public static void main(String[] args) {
+		A a=new A(1,4);
+		
+		
+	}
+
+}
+
+
+.....................................................................................
+
+
+
+
+public class Composition {
+   private int day,month,year;
+   public Composition(int day,int month,int year){
+	   this.day=day;
+	   this.month=month;
+	   this.year=year;
+   }
+
+public static  String date(){
+	return "day+/+month+/+year";
+}
+}
+class Employee{
+	private int id;
+	private String name;
+	private String hiredate;
+
+	public Employee(){
+		this.id=id;
+		this.name=name;
+		this.hiredate=Composition.date();
+	}
+	
+
+	public String display(){
+		return hiredate;
+		
+		
+		
+	}
+	public static void main(String[] args) {
+		
+	}
+
+
+}
+
+
+
+..............................................................................................
+
+
+import java.util.Arrays;
+
+public class UserCode {
+	public static boolean printInteger(int [] array2) {
+		
+		
+		int array1[]={102,103,104,105};
+		if(Arrays.equals(array1,array2)){
+			return true;
+		}
+		return false;
+		 }
+}
+	
+...............................................................................	 
+
+
+public class UserCode {
+
+	public static int summationOfNosInaString(String s) {
+             int sum = 0;
+	        for(int i = 0; i < s.length() ; i++){
+	            if( Character.isDigit(s.charAt(i)) ){
+	                sum = sum + Character.getNumericValue(s.charAt(i));
+	            }
+	        }
+	        return sum;
+
+		
+	}
+
+}
+..................................................................................
+
+
+public class UserCode {
+
+	public static boolean checkStringForPalindrome(String s1) {
+		  String rev="";
+	      for (int i =s1.length() - 1; i >= 0;i-- ){
+	         rev = rev+ s1.charAt(i);
+	           if (s1.equals(rev))
+	                return true;
+	        
+	   }
+		return false;
+	}
+
+}
+
+............................................................................................
+
+
+import java.util.Map;
+
+
+public class UserCode {
+	
+	public int absoluteNumber(String s1)
+	{
+	try{
+      int val=Integer.parseInt(s1);
+      if(val<0)
+    	  return Math.abs(val);
+      else
+		return -1;
+	}
+	catch(NumberFormatException e){
+		return -1;
+	}
+	      
+	}
+}
+....................................................................................................
+
+
+public class UserCode {
+
+	public static int checkForOnlyDigitsInArray(String s[]) {
+for(int i=0;i<s.length;i++){
+	String s1=s[i];
+	for(int j=0;j<s1.length();j++){
+	char c=s1.charAt(i);
+	if(Character.isDigit(c))
+		return 1;
+     
+	
+}
+	}
+return -1;
+		
+	}
+
+}
+...................................................................................
+
+14.
+public class UserCode {
+	public static String removeEvenElements(String s1) {
+        StringBuffer sb1=new StringBuffer();
+        for(int i=0;i<s1.length();i++)
+              if((i%2)!=0)
+                     sb1.append(s1.charAt(i));
+              else if((i%2)==0)
+                   if(s1.charAt(i)!='a' && s1.charAt(i)!='e' && s1.charAt(i)!='i' && s1.charAt(i)!='o' && s1.charAt(i)!='u')
+                           if(s1.charAt(i)!='A' && s1.charAt(i)!='E' && s1.charAt(i)!='I' && s1.charAt(i)!='O' && s1.charAt(i)!='U')
+                                sb1.append(s1.charAt(i));
+        return sb1.toString();		
+		
+	}
+}
+...................................................................................................................
+
+11.
+public class UserCode {
+	public static String retrieveString(String input1, int input2, int input3) {
+
+		 StringBuffer sb = new StringBuffer(input1);
+		    sb.reverse();
+		    String output = sb.substring(input2,input3);
+		    return output;
+		
+	}
+}
+.................................................................................................
+
+10.
+public class UserCode {
+
+	
+	public static String formattingOfString(String s1, int n1) {
+	
+		
+		String s=s1.substring(s1.length()-n1);
+		String res="";
+		for(int i=0;i<n1;i++){
+			res=res+s;
+		}
+		return res;
+	
+	}
+
+
+	}
+	
+.................................................................................................................
+8.
+public class UserCode {
+
+	public static String capsStart(String s1) {
+ StringBuffer res = new StringBuffer();
+
+		    String[] strArr = s1.split(" ");
+		    for (String str : strArr) {
+		        char[] stringArray = str.trim().toCharArray();
+		        stringArray[0] = Character.toUpperCase(stringArray[0]);
+		        str = new String(stringArray);
+
+		        res.append(str).append(" ");
+		    }
+
+		    return res.toString().trim();
+
+	}
+
+}
+
+
+.................................................................................
+9.
+import java.util.*;
+
+public class UserCode {
+	public static int validateIpAddress(String ipAddress) {
+		try {
+	        if ( ipAddress == null || ipAddress.isEmpty() ) {
+	            return 2;
+	        }
+
+	        String[] parts = ipAddress.split( "\\." );
+	        if ( parts.length != 4 ) {
+	            return 2;
+	        }
+
+	        for ( String s : parts ) {
+	            int i = Integer.parseInt( s );
+	            if ( (i < 0) || (i > 255) ) {
+	                return 2;
+	            }
+	        }
+	        if ( ipAddress.endsWith(".") ) {
+	            return 2;
+	        }
+
+	        return 1;
+	    } catch (NumberFormatException nfe) {
+	        return 2;
+	    }
+	}
+
+}
+................................................................................................................
+13.
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+public class UserCode {
+	public static boolean experienceCalc(String ip1, String ip2) throws ParseException {
+    int year1=Calendar.getInstance().get(Calendar.YEAR);
+    int year2=Integer.parseInt(ip1);
+    int year3=Integer.parseInt(ip2);
+    int diff=year1-year2;
+    if(diff>year3){
+    	return true;
+    }
+		return false;
+	}
+
+}
+
+............................................................................................................................
+15.
+public class UserCode {
+
+	public static int meterReading(String input1, String input2, int input3) {
+int n1 = Integer.parseInt(input1.substring(5, input1.length()));
+		    int n2 = Integer.parseInt(input2.substring(5, input2.length()));
+		    int n = Math.abs((n2 - n1) * input3);
+		    return n;
+
+	}
+}
+...........................................................................................................
+
+
+19.public class UserCode {
+
+	public static String printingStringDependingOncharCount(String ip1, String ip2) {
+
+		if(ip2.length()==3)
+            return ip1.substring(0,3)+ip1.substring(0,3);
+        if(ip2.length()==2)
+        	return ip1.substring(0,2)+ip1.substring(0,2)+ip1.substring(0,2);
+        else 
+        	return ip1+ip2;
+	}
+
+}
+.........................................................................................................................
+20.import java.util.Scanner;
+
+public class UserCode {
+
+	public static boolean consecutiveCharactersCheck(String s1) {
+	Scanner scan=new Scanner(System.in);
+		char s[]=scan.nextLine().toCharArray();
+		for(int i=0;i<s.length-1;i++){
+			if(s[i]==s[i+1]&&s[i]==s[i+2]&&s[i]==s[i+3])
+				return true;
+		}
+		scan.close();
+return false; 
+		
+	}
+}
+..................................................................................................................
+2.public class UserCode 
+{
+
+
+	public char fourthLetter(String input)
+	{
+		char ch='z';
+	try{
+				ch=input.charAt(3);
+				return ch;
+			}
+			catch(Exception e){
+				
+			}
+			return ch;
+		
+	
+	}
+}
+...................................................................................................................3.public class UserCode {
+	public int divide(int a, int b) throws Exception{
+		int res = 0;
+		res=a/b;
+	if ( b < 0 ) {
+			  throw new Exception("NumOneIsNegativException");
+			}
+		
+	 return res;
+		
+
+	}
+
+}
+...................................................................................
+4.public class UserCode 
+{
+	public String verfiyAge(int age) throws Exception
+	{
+		String res="Age Verified";
+		
+	
+            if(age < 18)
+            
+               throw new Exception("Age is less than 18"); 
+                
+         
+		return res;
+	}
+}
+.....................................................................................
+5.public class UserCode {
+	public String verfiyAge(int age) throws Exception {
+		String res = "Age Verified";
+	
+		if(age>90)
+			throw new Exception("Age should not exceed 90"); 
+       return res ;
+
+	}
+}
+......................................................................................
+6.import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class UserCode 
+{
+	public String validatePassword(String pass) throws Exception
+	{
+		String s="Valid";
+
+		Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
+		 
+	      Matcher matcher = pattern.matcher(pass);
+	 
+	      if (matcher.matches()) {
+	    	  throw new Exception("Password Too Weak");
+	      }
+		return s;
+	
+		
+	}
+}
+...........................................................................
+
+
+7.public class UserCode 
+{
+	public String validatePassword(String pass) throws Exception
+	{
+		 String res="Valid";
+		int count1=0,count2=0;
+		for(int i=0;i<pass.length();i++){
+			char c=pass.charAt(i);
+			if(Character.isDigit(c))
+				count1++;
+			if(Character.isUpperCase(c))
+				count2++;
+		}
+		if(count1==1 && count2==1)
+			return res;
+		else
+			throw new Exception("Password Too Weak");
+	
+	}
+}
+.................................................................................
+8.public class UserCode 
+{
+	public String validatePassword(String pass) throws Exception
+	{
+		String res="Valid";
+	
+		int count1=0,count2=0;
+		for(int i=0;i<pass.length();i++){
+			char c=pass.charAt(i);
+			if(Character.isDigit(c))
+				count1++;
+			if(Character.isUpperCase(c))
+				count2++;
+		}
+		if(count1==1 && count2==1)
+			return res;
+		else if(count1!=1)
+			throw new Exception("Digit Not Found");
+		else if(count2!=1)
+			throw new Exception("Upper Case Not Found");
+		    
+	    return res;
+		
+	
+		
+	}
+}
+.........................................................................................................
+9.public class UserCode 
+{
+	public int countVow(String str) throws Exception
+	{
+		int count=0;
+	for(int i=0; i<str.length(); i++) {
+	     if(str.charAt(i) == 'a'|| str.charAt(i) == 'e'|| str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u' ||
+	    		 str.charAt(i) == 'A'|| str.charAt(i) == 'E'|| str.charAt(i) == 'I' || str.charAt(i) == 'O' || str.charAt(i)== 'U') {
+	        	count ++;
+	        	
+	         }
+		}
+	    if(count==0)      
+		        throw new Exception("VowelNotFoundException");
+		
+
+		return count;
+}
+}
+...................................................................................................................
+10.public class UserCode 
+{
+	public int convertToNumber(String input) throws NumberFormatException 
+	{
+		int num=0;
+try{
+			num=Integer.parseInt(input);
+		}catch(NumberFormatException e){
+			throw new NumberFormatException("String Contain Numbers");
+		}
+     return num;
+}
+	}
+............................................................................................................
+12.
+class StringIndexOutOfBoundsException extends Exception{
+	public StringIndexOutOfBoundsException(String data){
+		super(data);
+	}
+}
+public class UserCode {
+public String checkEligibilty(String data) throws StringIndexOutOfBoundsException{
+ String data1=data.substring(2,5);
+		if(data1.charAt(0)=='v'){
+			throw new java.lang.StringIndexOutOfBoundsException();
+		}
+	     return data1;     
+		
+	   } 	 
+}
+.....................................................................................
+
+13.public class UserCode 
+{
+	public String dateCheck(int day,int month,int year) throws Exception
+	{
+		String res="Day is Valid";
+
+		if(day<0)
+			throw new Exception("Negative Day");
+		else if(day==0)
+			throw new Exception("Invalid Day");
+		else if(day>31)
+			throw new Exception("Day Limit Exceeded");
+		return res;
+	}
+}
+..........................................................................................................
+14.public class UserCode 
+{
+	public String dateCheck(int day,int month,int year) throws Exception 
+	{
+		String res="Month is Valid";
+
+			   if(month<0)
+					throw new Exception("Negative Month");
+				else if(month==0)
+					throw new Exception("Invalid Month");
+				else if(month>12)
+					throw new Exception("Month Limit Exceeded");
+				return res;
+
+	
+	}
+}
+..........................................................................................................
+15.public class UserCode 
+{
+	public String dateCheck(int day,int month,int year) throws Exception 
+	{
+		String res="Year is Valid";
+	if(year<0)
+				throw new Exception("Negative Year");
+			else if(year==0)
+				throw new Exception("Invalid Year");
+			else if(year>2017)
+				throw new Exception("Year Limit Exceeded");
+		
+		return res;
+	}
+}
+...............................................................................................................
+
+16.public class UserCode 
+{
+	public String dateCheck(int day,int month,int year) throws Exception
+	{
+		String res="Valid Date";
+	
+		if(day>31 || month>31 || year>2020)
+			throw new Exception("Invalid Date");
+		if(year%4==0){
+			if(month==2 && day>29)
+				throw new Exception("Leap Year Day Error");
+		}
+		return res;
+	}
+}
+..............................................................................................................
+
+17.public class UserCode 
+{
+	public int findSum(int array[]) throws Exception
+	{
+		int sum=0;
+	
+		for(int i=0;i<array.length;i++){
+			sum=sum+array[i];
+		
+		if(array[i]<0)
+			throw new Exception("Array Have Negatives");
+		if(array[i]==0)
+			throw new Exception("Array Have Zeros");
+		
+	}
+		return sum;
+}
+}
+..............................................................................................................
+19.public class UserCode 
+{
+	public String palindromeWord(String input) throws Exception
+	{
+		String res="";
+	for(int i=input.length()-1;i>=0;i--){
+			res=res+input.charAt(i);
+			if(input.equals(res))
+				return "Pallindrome";
+			char c=input.charAt(i);
+			if(Character.isDigit(c))
+				throw new Exception("Invalid String");
+		}
+			
+		return "Not a Pallindrome";
+	}
+}
+.......................................................................................................................
+22.
+
+public class UserCode {
+public String check(String fname, String lname, int rollnum) throws Exception {
+		
+		String output="";
+		
+			String laname=lname.toUpperCase();
+			output=laname.concat(fname);
+			try{
+			if(fname==null || lname== null)
+				throw new NullPointerException("NullPointerException");
+			
+		    }catch(NullPointerException e){
+             System.out.println(e.getMessage());
+		   }
+			
+		return output;
+	}
+
+	
+	
+}
+.....................................................................................................
+
+23.
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
+
+
+public class UserCode {
+
+	
+		public static String extensionString(String s1) throws Exception 
+		{
+			if(s1.contains(".jpeg"))
+				return "jpeg";
+			if(!s1.contains("."))
+				throw new Exception("NotValidFormat");
+			else
+				throw new Exception("NotFileExtension");
+				
+			}
+		
+}
+...................................................................................
+
+7.import java.lang.Thread.State;
+
+public class UserCode 
+{
+	public Thread changeThreadName(Thread tName)
+	{ String s=tName.getName();
+		   tName.setName(s.substring(0,3));
+			return tName;
+	
+	}
+}
+............................................................................
+8.
+import java.lang.Thread.State;
+
+		public class UserCode 
+		{
+			public Thread changeThreadName(Thread tName)
+			{
+			String s=tName.getName();
+			String res="";
+			for(int i=0;i<s.length();i++){
+				char ch=s.charAt(i);
+				if(ch=='a' || ch=='e' ||ch=='i' || ch=='o' || ch=='u' ||ch=='A' || ch=='I' ||ch=='E' ||ch=='O' || ch=='U' )
+					 res=res+ch;
+				}
+				tName.setName(res);
+				return tName;
+			
+			
+				
+			}
+		}
+....................................................................................................
+9.import java.lang.Thread.State;
+
+public class UserCode 
+{
+	public int findAlive(Thread tName)
+	{
+		int IsAlive=0;
+	
+      if(tName.isAlive())
+    	  return 1;
+		return IsAlive;
+	}
+
+
+
+.........................................................................
+
+
+10,.import java.lang.Thread.State;
+
+public class UserCode 
+{
+	public Thread changeThreadNamePriority(Thread tName)
+	{
+
+	String s=tName.getName();
+	tName.setName(s.substring(0,1).concat(s.substring(s.length()-1)));
+	tName.setPriority(Thread.MAX_PRIORITY);
+		return tName;
+	}
+}
+.................................................................
+11.import java.lang.Thread.State;
+
+public class UserCode 
+{
+	public String findThreadGroup(Thread tName)
+	{
+		String groupName=null;
+	
+	groupName=tName.getThreadGroup().toString();
+		return groupName;
+	}
+}
+..................................................................................
+
+12.import java.lang.Thread.State;
+
+public class UserCode 
+{
+	public String findThreadGroup(Thread tName)
+	{
+		String groupName=null;
+	if(tName.getThreadGroup()==Thread.currentThread().getThreadGroup())
+		return "MAIN THREAD GROUP";
+		return "CHILD THREAD GROUP";
+	}
+}
+........................................................................................
+13.import java.lang.Thread.State;
+
+public class UserCode extends Thread
+{
+	public String findPriority(Thread tName)
+	{
+		String priorityText=null;
+	
+		if(tName.getPriority()==1)
+			return "LOW PRIORITY";
+		if(tName.getPriority()==5)
+			return "MEDIUM PRIORITY";
+		if(tName.getPriority()==10)
+			return "MAXIMUM PRIORITY";
+		return priorityText;
+		
+
+		
+	}
+}
+........................................................................
+14.import java.lang.Thread.State;
+
+public class UserCode extends Thread
+{
+	public String findPriority(Thread tName)
+	{
+		String priorityText=null;
+	
+				if(tName.getPriority()==0)
+					return "LOW PRIORITY";
+				if(tName.getPriority()>=1 &&tName.getPriority()<=4 )
+					return "BELOW NORMAL PRIORITY";
+				if(tName.getPriority()==5 )
+					return "NORMAL PRIORITY";
+				if(tName.getPriority()>=6 &&tName.getPriority()<=9 )
+					return "ABOVE NORMAL PRIORITY";
+				
+				if(tName.getPriority()==10)
+					return "MAXIMUM PRIORITY";
+				return priorityText;
+		
+	}
+}
+............................................................................................
+
+15.import java.util.ArrayList;
+import java.util.List;
+
+public class UserCode extends Thread
+{
+	public List<Integer> fillArray(int limit)
+	{
+		List<Integer> out=new ArrayList<Integer>();
+	
+		for(int i=1;i<=limit;i++){
+		out.add(i);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+		return out;
+	}
+}
+......................................................................................
+
+16.import java.lang.Thread.State;
+
+public class UserCode extends Thread
+{
+	public String sleepThread(Thread tName) throws Exception
+	{
+		String statusText=null;
+
+		tName.start();
+	tName.sleep(5000);
+	statusText=tName.getState().toString();
+		
+		return statusText;
+	}
+}
+............................................................
+
+17.import java.lang.Thread.State;
+
+public class UserCode extends Thread
+{
+	public String findInitialFinalStatus(Thread tName)
+	{
+		String statusText=null;
+String pre=tName.getState().toString();
+		try {
+			tName.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String end=tName.getState().toString();
+		
+		return pre+"-"+end ;
+	}
+}
+.......................................................................
+
+18.import java.lang.Thread.State;
+
+public class UserCode extends Thread
+{
+	public String findPriorityAndConvert(Thread tName)
+	{
+		String Text=null;
+	
+		if(tName.getPriority()==1)
+			return "ONE";
+		if(tName.getPriority()==2)
+			return "TWO";	
+		if(tName.getPriority()==3)
+			return "THREE";
+		if(tName.getPriority()==4)
+			return "FOUR";
+		if(tName.getPriority()==5)
+			return "FIVE";
+		if(tName.getPriority()==6)
+			return "SIX";
+		if(tName.getPriority()==7)
+			return "SEVEN";
+		if(tName.getPriority()==8)
+			return "EIGHT";
+		if(tName.getPriority()==9)
+			return "NINE";
+		if(tName.getPriority()==10)
+			return "TEN";
+		return Text ;
+	}
+}
+..................................................................................
+
+1.
+
+import java.io.File;
+
+public class UserCode {
+
+		public static int countNumOfFiles(String filePath) {
+			int numberOfFiles = 0;// output for test case
+			 File directory=new File(filePath);
+			    numberOfFiles=directory.list().length;
+			
+			return numberOfFiles;
+
+		}
+}
+.....................................................................
+
+3.import java.io.File;
+
+public class UserCode {
+	public static boolean pathNameExistsOrNot(String filePath)
+	{
+		boolean flag = false;
+      File Files=new File(filePath);
+		if(Files.exists())
+		   return true;
+		return flag;
+	}
+
+}
+........................................................................
+4.import java.io.File;
+import java.io.FilenameFilter;
+import java.util.Arrays;
+
+public class UserCode {
+public static Boolean readWritePermission(String filePath) {
+		File f = new File(filePath);
+		if(f.canWrite()) {
+		  if(f.canRead())
+			  return true;
+	}
+		return false;
+}
+}
+......................................................................
+5.import java.io.File;
+
+public class UserCode {
+	public static boolean isDirectoryNorFile(String filePath) {
+	boolean flag = false;
+File f = new File(filePath);
+	if(f.isDirectory() || f.isFile()){
+		
+			return true;
+	}
+	return flag;
+
+}
+}
+.........................................................................
+6.import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class UserCode {
+public static int fileLastModifiedDate(String filePath) {
+		File f = new File(filePath);
+	Date date = new Date(f.lastModified());
+	 SimpleDateFormat sdf = new SimpleDateFormat("dd");
+	     int dat=Integer.parseInt(sdf.format(date));
+		return dat;
+	}
+
+	public static int fileLastModifiedMonth(String filePath) {
+		File f = new File(filePath);
+	Date date = new Date(f.lastModified());
+	 SimpleDateFormat sdf = new SimpleDateFormat("MM");
+	     int dat=Integer.parseInt(sdf.format(date));
+		return dat;
+	
+	}
+
+	public static int fileLastModifiedYear(String filePath) {
+		File f = new File(filePath);
+	Date date = new Date(f.lastModified());
+	 SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+	     int dat=Integer.parseInt(sdf.format(date));
+		return dat;
+	
+	}
+
+}
+...........................................................................
+7.import java.io.File;
+import java.io.FilenameFilter;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+
+public class UserCode {
+public static long fileSizeInBytes(String filePath) {
+   File f=new File(filePath);
+   long fileSizeInBytes = f.length(); 
+   if(f.isFile())
+	   return fileSizeInBytes;
+  return 0;
+
+	}
+
+	public static long fileSizeInKb(String filePath) {
+		  File f=new File(filePath);
+		   long fileSizeInBytes = f.length(); 
+		   if(f.isFile())
+			   return fileSizeInBytes/1024;
+		return 0;
+	}
+
+	public static long fileSizeInMb(String filePath) {
+		  File f=new File(filePath);
+		   long fileSizeInBytes = f.length();
+		   long fileSizeInKB=fileSizeInBytes/1024;
+		   if(f.isFile())
+			   return fileSizeInKB/1024;
+		return 0;
+	}
+
+}
+............................................................................
+
+9.
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class UserCode {
+	
+	public StringBuffer readStreamOfLinesUsingFiles(String in) throws Exception{
+	FileReader fileReader = new FileReader(in);
+			BufferedReader br = new BufferedReader(fileReader);
+			StringBuffer b = new StringBuffer();
+			String line;
+			while ((line = br.readLine()) != null) {
+				b.append(line);
+				b.append("\n");
+
+			}
+			return b;
+
+}            
+       
+}
+
+.......................................................................................................
+
+			BufferedReader br = new BufferedReader(new FileReader(read));
+			
+			    StringBuffer sb = new StringBuffer();
+			    String line = br.readLine();
+            try{
+			    while (line != null) {
+			        sb.append(line);
+			        sb.append(System.lineSeparator());
+			        line = br.readLine();
+		
+	             }
+            }catch(FileNotFoundException e){
+            	e.getMessage();
+            	System.out.println("File not Found");
+            }catch(IOException ex){
+            	ex.getMessage();
+            }
+			    return sb;
+		}}
+}
+..............................................................
+13.public class UserCode {
+	public static String findLongestWord(String input) throws FileNotFoundException {
+	
+		//Enter your code here	
+		String longest_word = "";
+	       String current;
+	       Scanner sc = new Scanner(new File(input));
+
+	       while (sc.hasNext()) {
+	          current = sc.next();
+	           if (current.length() > longest_word.length()) {
+	             longest_word = current;
+	           }
+
+	       }
+	    
+	            return longest_word;
+	
+
+	}
+}
+................................................................................
+11.public String data(String input) throws Exception
+{
+StringBuilder sb = new StringBuilder();
+     String strLine = "";
+     String str_data = "";
+     try {
+          BufferedReader br = new BufferedReader(new FileReader(input));
+          while (strLine != null)
+          {
+             if (strLine == null)
+               break;
+             str_data += strLine;
+             strLine = br.readLine();
+             
+         }
+           System.out.println(str_data);
+          br.close();
+     } catch (FileNotFoundException e) {
+         System.err.println("File not found");
+     } catch (IOException e) {
+         System.err.println("Unable to read the file.");
+     }
+	return str_data;
+
+}
+}
+.....................................................................................
+
+12.       List<String> lines = Collections.emptyList();
+        try { 
+        	lines = Files.readAllLines(Paths.get(input), StandardCharsets.UTF_8); 
+        	}
+        catch (IOException e) {
+      } 
+        
+        return lines;
+   
+	}
+...........................................................................
+10.	public StringBuffer readtextfile(String read) throws Exception {
+
+		{
+
+			{
+				String text=null;
+				StringBuffer buffer=new StringBuffer();
+				if(read.toLowerCase().endsWith(".txt")){
+					BufferedReader reader=null;
+					reader=new BufferedReader(new FileReader(read));
+					while((text=reader.readLine())!=null){
+						buffer.append(text);
+					buffer.append(System.lineSeparator());
+					}
+					return buffer;
+				}
+				else
+					throw new FileNotFoundException("File not Found");
+				
+
+		}
+	}
+.............................................................................................
+23.	
+		BufferedReader reader = new BufferedReader(new FileReader(filePath));
+		int lines = 0;
+		while (reader.readLine() != null) 
+			lines++;
+		reader.close();
+		return lines;
+
+	}
+............................................................................................
+24.import java.io.File;
+
+public class UserCode {
+	public static String getEmptyDirectoryName(String filePath) {
+	  File file = new File(filePath);
+		
+		if(file.isDirectory()){
+			if(file.list().length>0)
+				 return "Its not an empty Directory";
+			else
+				return file.getName();
+		}
+		return file.getName();      
+      
+ }
+}
+.........................................................................
+
+ 15.  BufferedReader b=new BufferedReader(new FileReader(input));
+     int i=0;
+     String[] str=new String[3];
+     String st=" ";
+     try{
+     for(i=0;i<3;i++){
+    	 if((st=b.readLine())!=null)
+    		 str[i]=st;
+    		 
+     }
+..................................................
+14.public static String shortestWord(String input) {
+		String shortword=" ";
+		String current;
+		Scanner sc;
+		
+			try {
+				sc=new Scanner(new File(input));
+			
+			current=sc.nextLine();
+			int c_len=current.length();
+			String s[]=current.split(" ");
+			for(String data:s){
+				if(data.length()<c_len){
+					shortword=data;
+					c_len=data.length();
+				}
+			}
+			} catch (FileNotFoundException e) {
+				
+				e.printStackTrace();
+			}
+		
+		
+		
+		return shortword;
+		
+		
+	}
+..................................................................................
+
+	URL url = new URL(path);
+		
+		BufferedReader in=new BufferedReader(new InputStreamReader(url.openStream()));
+		String inputline=" ";
+		while((inputline=in.readLine())!=null)
+			return inputline;
+		return inputline;
+
+
+..................................................................
+1.import java.util.*;
+
+public class UserCode {
+	public static int retrieveMaxFromOddIndex(int[] a) {	
+List<Integer> list=new ArrayList<>();
+for(int i=1;i<a.length;i+=2){
+	  list.add(a[i]);
+
+}
+    return Collections.max(list);
+
+}
+}
+..........................................
+1.import java.util.*;
+
+public class UserCode {
+	public static int retrieveMaxFromOddIndex(int[] a) {
+	int max=0;
+
+		for(int i=1;i<a.length;i+=2){
+			if(a[i]>0)
+			  max=a[i];
+
+		}
+		    return max;
+
+
+}
+}
+..............................................................
+3.	public static int[] commonSet(List<Integer> l1, List<Integer> l2) {
+	List<Integer> a=new ArrayList<>(l1);
+		 a.removeAll(l2);
+		List<Integer> b=new ArrayList<>(l2);
+		b.removeAll(l1);
+		a.addAll(b);
+		int[] res=new int[a.size()];
+		int i=0;
+		for(Integer e:a)
+			res[i++]=e;
+		return res;
+		
+	
+	}
+...................................................................................
+2.public class UserCode {
+public static int thirteenLapse(int ip1, int ip2, int ip3) {
+		if(ip1!=13 && ip2!=13 && ip3!=13)
+			return ip1+ip2+ip3;
+		if(ip1!=13 && ip2!=13 && ip3==13)
+			return ip1+ip2;
+		if(ip1!=13 && ip2==13 && ip3!=13)
+			return ip1;
+		if(ip1!=13 && ip2==13 && ip3==13)
+			return ip1;
+		if(ip1!=13 && ip2==13 && ip3!=13)
+			return ip1;
+		if(ip1==13 && ip2!=13 && ip3!=13)
+		   return ip3;
+		if(ip1==13 && ip2!=13 && ip3==13)
+            return 0;
+		if(ip1==13 && ip2==13 && ip3!=13)
+			  return ip3;
+		else
+		return 0;
+	
+
+	
+	}
+}
+..............................................................................
+4.	HashMap<String, String>res=new HashMap<String, String>(m1);
+		
+		String b=null;
+		Float a1=0f;
+	    for(int i=0;i<s.length;i++){
+		if(res.containsKey(s[i])){
+			b=res.get(s[i]);
+		 a1+=Float.parseFloat(b);
+		}
+	
+	    }
+				return a1;
+	}
+.............................................................................
+5.	public static int fetchingKeysDivisibleByFour(Map<Integer, String> m1) {
+	
+     HashMap<Integer, String>res=new HashMap<Integer, String>(m1);
+		int count=0;
+		Set<Integer> keys = res.keySet();
+        for(Integer key: keys){
+		       if(key%4!=0)
+					count++;
+			
+		 }
+	    
+	      return count;
+	}
+
+}
+........................................................................
+
+6.	public int mergeArray(int n1[], int n2[]) {
+
+        int sum=0;
+        int a[]=new int[100];
+        for(int i=0;i<n1.length;i++){
+        	for(int j=0;j<n2.length;j++){
+        		if(n1[i]==n2[j]){
+        			a[i]=n1[i];
+        			sum+=a[i];
+        		}
+        			
+        	}
+        }
+		return sum;
+
+	}
+}
+.......................................................................
+
+	
+................................................................
+10.	public static int sumOfSquareOfIndividualDigits(int n1) {
+		
+
+		int m,sum = 0; 
+        
+		while(n1>0)
+		{
+		m=n1%10;
+		sum+= m*m;
+		n1=n1/10;
+		
+	}	return sum;
+
+}
+}
+......................................................................
+23,17.public class UserCode {
+	public static String removalOfDuplicateCharacters(String s1){
+	
+		char[] chars = s1.toCharArray();
+		Set<Character> charSet = new LinkedHashSet<Character>();
+		for (char c : chars) {
+		    charSet.add(c);
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (Character character : charSet) {
+		    sb.append(character);
+		}
+		
+		return sb.toString();
+			
+	}
+
+}
+...................................................................................
+7.	public static String retrieveMaxScoredStudent(String s1[]) {
+  
+		int max=0;
+		String s4=null;
+		for(int i=0;i<s1.length;i++){
+			String s2=s1[i];	
+			StringTokenizer t=new StringTokenizer(s2,"#");
+			String s3=t.nextToken();
+			int n1=Integer.parseInt(t.nextToken());
+			int n2=Integer.parseInt(t.nextToken());
+			int n3=Integer.parseInt(t.nextToken());
+			int n=n1+n2+n3;
+		
+		if(n>=max)
+		{
+			max=n;
+			s4=s3;
+		}
+		}
+		return s4;
+	}
+
+}
+...........................................................................
+8.	public static Map<String,String> examResult(Map<String, Integer> m1) {
+	
+		HashMap<String,Integer> h1=new HashMap<>(m1);
+		HashMap<String,String> h2=new HashMap<>();
+		Set<Entry<String,Integer>> key=h1.entrySet();
+		for(Entry<String,Integer> ent:key){
+			if(ent.getValue()<60){
+				h2.put(ent.getKey(), "FAIL");
+			}else
+				h2.put(ent.getKey(),"PASS");
+		}
+	    
+		return h2;
+	}
+.................................................................................................
+9.	public static String[] loweringCasenReverseofaString(String ip1, char ip2){
+
+				         String s=Character.toString(ip2);
+				         StringTokenizer st=new StringTokenizer(ip1,s);
+				         ArrayList<String> tokens=new ArrayList<String>();
+				         while(st.hasMoreTokens()){
+				        	 StringBuilder sb=new StringBuilder(st.nextToken().toLowerCase());
+				        	 tokens.add(sb.reverse().toString());
+				         }
+				         String[] output1=new String[tokens.size()];
+				         for(int i=0;i<tokens.size();i++){
+				        	 output1[i]=tokens.get(i);
+				         }
+		return output1;
+	
+	}
+	
+}
+.....................................................................................................................
+20.public static String[] input(Map<String,String> m1 ,String s2) {
+	
+		ArrayList<String> list=new ArrayList<String>();
+		for(Entry<String,String>m:m1.entrySet()){
+			m.getKey();
+			m.getValue();
+			if(m.getValue().equals(s2))
+				list.add(m.getKey());
+		}
+		
+		
+		String[]s=new String[list.size()]; 
+		for(int i=0;i<list.size();i++){
+			s[i]=list.get(i);
+			
+		}
+		return s;
+
+		
+	}
+
+}
+.........................................................................................
+
+13.  public static int[] removalOfGivenElementFromArray(int[] a, int c)
+  {
+    
+	  List<Integer> al = new ArrayList<>();
+	  for (int i : a) { 
+          if (i != c) { 
+              al.add(i); 
+          } 
+      } 
+	   
+	   int res[]=new int[al.size()];
+		  for(int i=0;i<al.size();i++)
+			  res[i]=al.get(i);	
+	  
+    return res;
+  }
+.............................................................
+  15.                          int sum = 0;
+				int k = 0;
+				 
+				for (int x = i;  x<= j; x++) {
+				k = 0;
+				for (int y= 1; y <= x; y++) {
+				if (x % y == 0)
+				k++;
+				}
+				if (k != 2) {
+				sum = sum + x;
+				}
+				}
+				 
+				return sum;
+....................................................................................
+	16.	public static float avgOfEvenKeyValues(Map<Integer, Float> m1) {
+	
+		float sum = 0;
+	    float count = 0;
+	    
+	    Iterator<Integer> it = m1.keySet().iterator();
+	    while (it.hasNext()) {
+	      int y = it.next();
+	      if (y % 2 ==0) {
+	        sum = (float) (sum + m1.get(y));
+	        count++;
+	      }
+	    }
+	    float d = sum / count;
+	    double val = Math.round(d * 100) / 100.00;
+
+	    return (float) val;
+		
+	
+	}
+...............................................................................................
+18.public class UserCode {
+
+	public static Map<String, String> uppercase(String[] temp) {
+	
+		HashMap<String, String> hm = new HashMap<String, String>();
+		ArrayList<String> lst1 = new ArrayList<String>();
+		ArrayList<String> lst2 = new ArrayList<String>();
+		
+		for(String s : temp)
+		lst1.add(s.toUpperCase().substring(0,3));
+		
+		for(String s : temp)
+		lst2.add(s);
+		
+		for(int i=0;i<temp.length;i++)
+		{
+		hm.put(lst1.get(i),lst2.get(i));
+		}
+		return hm;
+		
+	
+		
+	}
+
+	
+}
+.......................................................................................................
+19.	public static int avgValuesOfOddKeys(Map<Integer, Integer> m1) {
+		  
+		int sum = 0,count=0,avg=0;
+		for(Map.Entry m:m1.entrySet()){
+			int a=(int)m.getKey();
+			if(a%2!=0){
+				int d=(int)m.getValue();
+				sum=sum+d;
+				count++;
+			}
+		}
+		avg=sum/count;
+		return avg;
+	
+	}
+	
+}
+......................................................................................
+14.public static int StringsNotOfGivenLength(List<String> l1,String s1){
+		
+		int count=0;
+		String[]s=new String[l1.size()]; 
+		for(int i=0;i<l1.size();i++){
+			s[i]=l1.get(i);
+		
+     }
+		for(int i=0;i<s.length;i++){
+			int len1=s[i].length();
+			int len2=s1.length();
+			if(len1!=len2)
+				count++;
+		}
+		 
+		
+		return count;
+	}
+.......................................................................................
+24.public  static String getStr(String[] s1, int ip) {
+
+		String res="";
+		int n=ip-1;
+		for(int i=0;i<s1.length;i++){
+			String s2=s1[i];
+			if(s2.length()>=ip){
+				res=res+s2.charAt(n)+"$";
+			}
+		}
+		String val=res.substring(0, res.length()-1);
+		
+		return val;
+		
+	}
+.............................................................................................
+
+
+	1.	JFrame frame=new JFrame(title);
+		frame.setSize(300,300);
+		frame.setVisible(true);
+
+..........................................
+2.	JFrame frame=new JFrame(title);
+		frame.setSize((int)width,(int) height);
+		frame.setVisible(true);
+......................................................
+3.JFrame frame=new JFrame("Sparta");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setSize(300, 300);
+				frame.setVisible(true);
+..............................................................................
+4.JFrame frame=new JFrame("Sparta");
+				JLabel lb=new JLabel("Enter Name");
+				frame.add(lb);
+					frame.setSize(300, 300);
+					frame.setVisible(true);
+.........................................................................
+5.JFrame frame=new JFrame("Sparta");
+				JLabel lb=new JLabel("Enter Name");
+				JPanel panel=new JPanel();
+				JTextField t=new JTextField(20);
+				frame.add(panel);
+			 	 panel.add(lb);
+			 	 panel.add(t);
+					frame.setSize(300,300);
+					frame.setVisible(true);
+...................................................................................
+6.JFrame frame=new JFrame("Sparta");
+				JLabel lb1=new JLabel("Enter Name");
+				JLabel lb2=new JLabel("Enter Password");
+				JPasswordField pass = new JPasswordField(10);
+				JPanel panel=new JPanel();
+				JTextField t=new JTextField(20);
+				frame.add(panel);
+			 	 panel.add(lb1);
+			 	 panel.add(t);
+			 	 panel.add(lb2);
+			 	 panel.add(pass);
+					frame.setSize(300,300);
+					frame.setVisible(true);
+.................................................................................................
+7.		JFrame frame=new JFrame("Sparta");
+				JLabel lb1=new JLabel("Enter Name");
+				JLabel lb2=new JLabel("Enter Password");
+				JPasswordField pass = new JPasswordField(10);
+				JButton b1=new JButton("Click Me");
+				JPanel panel=new JPanel();
+				JTextField t=new JTextField(20);
+				frame.add(panel);
+			 	 panel.add(lb1);
+			 	 panel.add(t);
+			 	 panel.add(lb2);
+			 	 panel.add(pass);
+			 	 panel.add(b1);
+					frame.setSize(300,300);
+					frame.setVisible(true);
+........................................................................................................
+8.	JFrame frame=new JFrame("Sparta");
+		JLabel lb1=new JLabel("Enter Name");
+		JLabel lb2=new JLabel("Enter Password");
+		JLabel lb3=new JLabel("Enter City");
+		JPasswordField pass = new JPasswordField(10);
+		JButton b1=new JButton("Register");
+		JComboBox co=new JComboBox();
+		co.addItem("India");
+		JPanel panel=new JPanel();
+		JTextField t=new JTextField(20);
+		frame.add(panel);
+	 	 panel.add(lb1);
+	 	 panel.add(t);
+	 	 panel.add(lb2);
+	 	 panel.add(pass);
+	 	 panel.add(b1);
+	 	 panel.add(lb3);
+	 	 panel.add(co);
+	 	 panel.add(b1);
+	 	frame.setSize(300,300);
+		frame.setVisible(true);
+..................................................................................................
+9.JFrame frame=new JFrame("Sparta");
+				JPanel panel=new JPanel();
+				JLabel lb1=new JLabel("Select gender");
+				JRadioButton rb1=new JRadioButton("Male");
+				JRadioButton rb2=new JRadioButton("Female");
+				JButton b=new JButton("Register");
+				frame.add(panel);
+				panel.add(lb1);
+				panel.add(rb1);
+				panel.add(rb2);
+				panel.add(b);
+				frame.setSize(300,200);
+				frame.setVisible(true);
+...........................................................................................................
+10.		JFrame frame=new JFrame("Sparta");
+				JPanel panel=new JPanel();
+				JLabel lb1=new JLabel("Select your hobbies");
+				JCheckBox check1=new JCheckBox("Reading");
+				JCheckBox check2=new JCheckBox("Sleeping");
+				JCheckBox check3=new JCheckBox("Painting");
+				JCheckBox check4=new JCheckBox("Travelling");
+				JButton b=new JButton("Register");
+				frame.add(panel);
+			 	 panel.add(lb1);
+			 	panel.add(check1);
+			 	panel.add(check2);
+			 	panel.add(check3);
+			 	panel.add(check4);
+			 	panel.add(b);
+			 	frame.setSize(300,200);
+				frame.setVisible(true);
+...................................................................................................................
+11.JFrame frame=new JFrame("Sparta");
+				JPanel panel=new JPanel();
+				JLabel lb1=new JLabel("Enter your feedback");
+				JTextArea area=new JTextArea(10,30);
+				JButton b=new JButton("Submit");
+				frame.add(panel);
+			 	 panel.add(lb1);
+			 	panel.add(area);
+			 	panel.add(b);
+			 	frame.setSize(300,300);
+				frame.setVisible(true);
+...................................................................................
+12.	JFrame frame=new JFrame("Sparta");
+				JPanel panel=new JPanel();
+				JLabel lb1=new JLabel("Name");
+				JTextField text1=new JTextField(10);
+				JLabel lb2=new JLabel("City");
+				JTextField text2=new JTextField(10);
+				 frame.add(panel);
+				 panel.add(lb1);
+				 panel.add(text1);
+				 panel.add(lb2);
+				 panel.add(text2);
+				 panel.setLayout(new GridLayout(2,2)); 
+				  frame.setSize(300,300);  
+				    frame.setVisible(true);
+.............................................................................................
+13.JFrame frame=new JFrame("Sparta");
+				JLabel lb1=new JLabel("Enter Name");
+				JLabel lb2=new JLabel("Enter Password");
+				JLabel lb3=new JLabel("");
+				JPasswordField pass = new JPasswordField(10);
+				JButton b1=new JButton("login");
+				JPanel panel=new JPanel();
+				JTextField t=new JTextField(20);
+				frame.add(panel);
+			 	 panel.add(lb1);
+			 	 panel.add(t);
+			 	 panel.add(lb2);
+			 	 panel.add(pass);
+			 	panel.add(lb3);
+			 	panel.add(b1);
+			 	 panel.setLayout(new GridLayout(3,2));
+			 	frame.setSize(150,150);
+					frame.setVisible(true);
+............................................................................................
+14.{JFrame frame;
+JTextField t;
+			public void makeFrame()
+			{
+			
+				 frame=new JFrame("Sparta");
+				JLabel lb1=new JLabel("Enter Name");
+				JLabel lb2=new JLabel("Enter Password");
+				JLabel lb3=new JLabel("");
+				 t=new JTextField(20);
+				JPasswordField pass = new JPasswordField(20);
+				JButton b1=new JButton("login");
+				
+				JPanel panel=new JPanel();
+				
+				frame.add(panel);
+			 	 panel.add(lb1);
+			 	 panel.add(t);
+			 	 panel.add(lb2);
+			 	 panel.add(pass);
+			 	panel.add(lb3);
+			 	panel.add(b1);
+			 	 panel.setLayout(new GridLayout(3,2));
+			 	 b1.addActionListener(new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						String text=t.getText();
+						String pa=new String(pass.getPassword());
+						if(text.equals("sa") && pa.equals("pass")){
+							JFrame f=new JFrame();
+							JOptionPane.showMessageDialog(f,"Valid User"); 
+							
+						}
+					}
+			 		 
+			 	 });
+			 		 
+		frame.setSize(150,150);
+		frame.setVisible(true);
+		
+			}
+.............................................................................................
+15.	JFrame frame;
+	JTextField t;
+
+	public void makeFrame() {
+
+					 frame=new JFrame("Sparta");
+						JLabel lb1=new JLabel("Enter Name");
+						JLabel lb2=new JLabel("Enter Password");
+						JLabel lb3=new JLabel("");
+						 t=new JTextField(20);
+						JPasswordField pass = new JPasswordField(20);
+						JButton b1=new JButton("login");
+						
+						JPanel panel=new JPanel();
+						
+						frame.add(panel);
+					 	 panel.add(lb1);
+					 	 panel.add(t);
+					 	 panel.add(lb2);
+					 	 panel.add(pass);
+					 	panel.add(lb3);
+					 	panel.add(b1);
+					 	 panel.setLayout(new GridLayout(3,2));
+					 	 b1.addActionListener(new ActionListener(){
+
+							@Override
+							public void actionPerformed(ActionEvent arg0) {
+								// TODO Auto-generated method stub
+								String text=t.getText();
+								String pa=new String(pass.getPassword());
+								JFrame f=new JFrame();
+								if(text.equals("sa") && pa.equals("pass")){
+									
+									JOptionPane.showMessageDialog(f,"Valid User"); 
+									
+								}
+								else{
+									JOptionPane.showMessageDialog(f,"Invalid User");
+								}
+							}
+					 		 
+					 	 });
+					 		 
+				frame.setSize(150,150);
+				frame.setVisible(true);
+........................................................................................................
+16.b2.addActionListener(new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						t.setText("");
+						pass.setText("");
+					}
+			 		
+			 	});
+...................................................................................
+17.JFrame frame=new JFrame("Sparta");
+				JLabel lb1=new JLabel("Name");
+				JTextField t=new JTextField(20);
+				JLabel lb2=new JLabel("City");
+				JPasswordField pass = new JPasswordField(20);
+				JLabel lb4=new JLabel("Password");
+				JComboBox co=new JComboBox();
+				co.addItem("Chennai");
+				co.addItem("Bangalore");
+				JLabel lb3=new JLabel("Address");
+				JTextArea area=new JTextArea(20,20);
+				JButton b1=new JButton("Reset");
+				JButton b2=new JButton("Save");
+				JPanel panel=new JPanel();
+				frame.add(panel);
+			 	 panel.add(lb1);
+			 	 panel.add(t);
+			 	 panel.add(lb4);
+			 	 panel.add(pass);
+			 	 panel.add(lb2);
+			 	 panel.add(b1);
+			 	 panel.add(co);
+			 	 panel.add(lb3);
+			 	 panel.add(area);
+			 	 panel.add(b1);
+			 	 panel.add(b2);
+			 	panel.setLayout(new GridLayout(5,2));
+			 	frame.setSize(300,300);
+				frame.setVisible(true);
+				b1.addActionListener(new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						t.setText("");
+						pass.setText("");
+						area.setText("");
+					}
+			 		
+			 	});	
+...................................................................................................................
+18.		JFrame frame=new JFrame("Sparta");
+				JLabel lb1=new JLabel("Name");
+				JTextField t=new JTextField(20);
+				JLabel lb2=new JLabel("City");
+				JPasswordField pass = new JPasswordField(20);
+				JLabel lb4=new JLabel("Password");
+				JComboBox co=new JComboBox();
+				co.addItem("Chennai");
+				co.addItem("Bangalore");
+				JLabel lb3=new JLabel("Address");
+				JTextArea area=new JTextArea(20,20);
+				JButton b1=new JButton("Reset");
+				JButton b2=new JButton("Save");
+				JPanel panel=new JPanel();
+				frame.add(panel);
+			 	 panel.add(lb1);
+			 	 panel.add(t);
+			 	 panel.add(lb4);
+			 	 panel.add(pass);
+			 	 panel.add(lb2);
+			 	 panel.add(b1);
+			 	 panel.add(co);
+			 	 panel.add(lb3);
+			 	 panel.add(area);
+			 	 panel.add(b1);
+			 	 panel.add(b2);
+			 	panel.setLayout(new GridLayout(5,2));
+			 	frame.setSize(300,300);
+				frame.setVisible(true);
+				b1.addActionListener(new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						t.setText("");
+						pass.setText("");
+						area.setText("");
+					}
+			 		
+			 	});
+				b2.addActionListener(new ActionListener(){
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						JFrame f=new JFrame();
+						String text=t.getText();
+						String a=area.getText();
+						String pa=new String(pass.getPassword());
+						if(text.isEmpty()== false && pa.isEmpty()==false && a.isEmpty()==false)
+							JOptionPane.showMessageDialog(f,"Data Saved"); 
+							
+						}
+				
+			});
+..............................................................................................................
+  JFrame frame=new JFrame("Sparta");
+				JLabel lb1=new JLabel("AppName");
+				JTextField t1=new JTextField(20);
+				JLabel lb2=new JLabel("Search");
+				JTextArea t2=new JTextArea(20,20);
+				JLabel lb3=new JLabel("Applist");
+				JComboBox co=new JComboBox();
+				co.addItem("FaceBook");
+				co.addItem("YouTube");
+				co.addItem("WhatsUp");
+				co.addItem("LinkedIn");
+				co.addItem("Twitter");
+				JCheckBox check1=new JCheckBox("Above 18");
+				JCheckBox check2=new JCheckBox("Below 18");
+				JLabel t4=new JLabel("");
+				JButton b=new JButton("Submit");
+				JLabel lb4=new JLabel();
+				JLabel lb5=new JLabel();
+				JLabel lb6=new JLabel();
+				 JPanel panel=new JPanel();
+				 b.addActionListener(new ActionListener(){
+
+						@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+							
+					String text1=t1.getText();
+					String text2=t2.getText();
+					String text3=co.getToolTipText();
+					String str=text1+text2+text3;
+				    lb4.setText(str);
+				   
+					}
+				
+		 		 
+		 	 });
+				check1.addActionListener(new ActionListener(){
+
+						@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+							
+					lb5.setText("Checkbox:Above 18 checked");
+					
+					}
+				
+		 		 
+		 	 });
+				 check2.addActionListener(new ActionListener(){
+
+						@Override
+				public void actionPerformed(ActionEvent arg0) {
+					// TODO Auto-generated method stub
+							lb6.setText("Checkbox:Below 18 checked");
+							
+							}
+						
+				
+		 		 
+		 	 });
+				
+					
+					frame.add(panel);
+				 	 panel.add(lb1);
+				 	 panel.add(t1);
+				 	 panel.add(lb2);
+				 	 panel.add(t2);
+				 	panel.add(lb3);
+				 	panel.add(co); 
+				 	 panel.add(check1);
+				 	 panel.add(check2);
+				 	panel.add(t4);
+				 	panel.add(b);
+				 	 panel.add(lb4);	
+				 	panel.add(lb5);
+				 	panel.add(lb6);
+				 	
+				 	panel.setLayout(new GridLayout(7,2));
+				 	frame.setSize(150,150);
+				 	frame.setVisible(true); 
+				
+....................................
+int empno=Integer.parseInt(t1.getText());
+			String name=t2.getText();
+			String city=co.getSelectedItem().toString();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+	    		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/ems","root","dsrc");
+	    		
+		        PreparedStatement ps=con.prepareStatement("insert into demo values(?,?,?)");
+		    	ps.setInt(1, empno);
+		        ps.setString(2, name);
+	        	ps.setString(3, city);
+	        	
+	        	
+	        	ps.executeUpdate();
+	        	System.out.println("Registered successfully");
+		        
+			
+		}catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}catch(SQLException e){
+			e.printStackTrace();
+
+		}	
+...........................................................................
+	1.try {
+			Class.forName("com.mysql.jdbc.Driver");
+    		Connection con= DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+    		
+    		PreparedStatement ps=con.prepareStatement("create table Employee11(EmpNo int primary key, FirstName varchar(20), LastName varchar(20))");	 
+    	
+    	
+    		ps.execute();
+        	
+        	
+        	
+        }catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+        }catch(SQLException e){
+		e.printStackTrace();
+
+	 }	
+    		
+    	..............................................................................
+4.try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			
+			  PreparedStatement ps=con.prepareStatement("insert into Employee values(?,?,?)");
+		    	ps.setInt(1, id);
+		        ps.setString(2, Fname);
+	        	ps.setString(3, Lname);
+	        	int execute=ps.executeUpdate();
+	        	if(execute>0){
+	        		isDone=true;
+	        	}
+				
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+.......................................................................................................
+5. 	
+    	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			
+			  PreparedStatement ps=con.prepareStatement("insert into Employee (EmpNo) values(?)");
+		    	ps.setInt(1, id);
+		        
+	        	int execute=ps.executeUpdate();
+	        	if(execute>0){
+	        		isDone=true;
+	        	}
+				
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return isDone;
+    	
+    	......................................................................................
+6.	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			
+			  PreparedStatement ps=con.prepareStatement("update Employee set FirstName=? where EmpNo=?");
+			  ps.setString(1, name);
+		    	ps.setInt(2, empno);
+		    	
+		        
+	        	int execute=ps.executeUpdate();
+	        	if(execute>0){
+	        		isDone=true;
+	        	}
+				
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return isDone;
+.................................................................................
+7.		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3307/tempdb","root","dsrc");
+			
+			  PreparedStatement ps=con.prepareStatement("update Employee set LastName=? where EmpNo=?");
+			  ps.setString(1, name);
+		    	ps.setInt(2, empno);
+		    	
+		        
+	        	int execute=ps.executeUpdate();
+	        	if(execute>0){
+	        		isDone=true;
+	        	}
+			
+	        	
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+  
+...............................................................................................................
+8.	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			
+		  PreparedStatement ps=con.prepareStatement("update Employee set FirstName=?,LastName=? where EmpNo=?");
+			  ps.setString(1, FirstName);
+			  ps.setString(2, LastName);
+		    	ps.setInt(3, empno);
+		    	
+		        
+	        	int execute=ps.executeUpdate();
+	        	if(execute>0){
+	        		isDone=true;
+	        	}
+			
+	        	
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		.........................................................................................................
+9.  	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			
+		  PreparedStatement ps=con.prepareStatement("select FirstName from Employee where EmpNo=?");
+			ps.setInt(1, empno);
+		    	ResultSet rs=ps.executeQuery();
+	        while(rs.next()){
+	        	 fName=rs.getString(1);
+	        }	
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return fName;
+...........................................................................................................
+10.	try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			
+		  PreparedStatement ps=con.prepareStatement("select LastName from Employee where EmpNo=?");
+			ps.setInt(1, empno);
+		    	ResultSet rs=ps.executeQuery();
+	        while(rs.next()){
+	        	lName=rs.getString(1);
+	        }	
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		...................................................................................................
+11.try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			
+		  PreparedStatement ps=con.prepareStatement("select concat(FirstName,LastName)  from Employee where EmpNo=?");
+			ps.setInt(1, empno);
+		    	ResultSet rs=ps.executeQuery();
+	        while(rs.next()){
+	        	lName=rs.getString(1);
+	        }	
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+..........................................................................................................
+12.try {
+ 			Class.forName("com.mysql.jdbc.Driver");
+ 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+ 			
+ 		  PreparedStatement ps=con.prepareStatement(("alter table Employee add column " )+columnName+(" varchar(20)"));
+
+ 			int execute=ps.executeUpdate();
+        	if(execute>0){
+        		isDone=true;
+        	}
+
+ 		} catch (ClassNotFoundException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		} catch (SQLException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+....................................................................................
+  13.   try {
+	 			Class.forName("com.mysql.jdbc.Driver");
+	 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+	 			for(int i=0;i<columnName.length;i++){
+	 		  PreparedStatement ps=con.prepareStatement(("alter table Employee add column " )+columnName[i]+(" varchar(20)"));
+	 		 int execute=ps.executeUpdate();
+	        	if(execute>0){
+	        		isDone=true;
+	        	}
+
+	 			}
+	 			
+	 		} catch (ClassNotFoundException e) {
+	 			// TODO Auto-generated catch block
+	 			e.printStackTrace();
+	 		} catch (SQLException e) {
+	 			// TODO Auto-generated catch block
+	 			e.printStackTrace();
+	 		}   
+    	    	  return isDone;
+    	   }
+    	.............................................................................................
+14. try {
+  			Class.forName("com.mysql.jdbc.Driver");
+  			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+  			
+  		  PreparedStatement ps=con.prepareStatement("delete from Employee where EmpNo=?");
+  		        ps.setInt(1, empno);
+  			int execute=ps.executeUpdate();
+         	if(execute>0){
+         		isDone=true;
+         	}
+
+  		} catch (ClassNotFoundException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		} catch (SQLException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		}
+.......................................................................................................................
+15.   	 try {
+   			Class.forName("com.mysql.jdbc.Driver");
+   			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+   			
+   		  PreparedStatement ps=con.prepareStatement("update Employee set LastName=null where EmpNo=?");
+   		        ps.setInt(1, empno);
+   			int execute=ps.executeUpdate();
+          	if(execute>0){
+          		isDone=true;
+          	}
+
+   		} catch (ClassNotFoundException e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   		} catch (SQLException e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   		}
+	...............................................................................................
+16.
+<form action="LoginServlet">
+<center>
+Login name<input type="text" name="name"><br>
+Password<input type="password" name="pass"><br>
+<input type="submit" value="login">
+
+      PrintWriter out=response.getWriter();
+      String name=request.getParameter("name");
+      String pass=request.getParameter("pass");
+      if(name.equals("sa") && pass.equals("pass")){
+    	  out.println("Welcome User");
+      }else{
+    	  out.print("Invalid User");
+      }
+
+<form action="LoginServlet">
+<center>
+<table>
+<tr><td>Login name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Password</td><td><input type="password" name="pass"></td></tr>
+<tr><td></td><td><input type="submit" value="login"></td></tr>
+</table>
+</center>
+</form>
+
+
+	  PrintWriter out=response.getWriter();
+	      String country=request.getParameter("s1");
+	      out.print("<html><body>");
+	      if(country.equals("India")){
+	    	  out.println("<center><h1>Cities</h1><br><br>Chennai , Bengaluru , Cochin</center>");
+	      }else if(country.equals("USA")){
+	    	  out.println("<center><h1>Cities</h1><br><br>Atlanta , Chicago , Dallas ,Florida</center>");
+	      }else if(country.equals("Australia ")){
+	    	  out.println("<center><h1>Cities</h1><br><br>Sidny , Canbara</center>");
+	      }
+	      out.print("</body></html>");
+
+	}
+
+
+<center>
+Select Country<select name="s1">
+  <option value="India">India</option>
+  <option value="USA">USA</option>
+  <option value="Australia">Australia</option>
+
+</select>
+<input type="submit" value="submit">
+
+</center>
+</form>
+...........................................................................
+
+           PrintWriter out=response.getWriter();
+	      String country=request.getParameter("s1");
+	      out.print("<html><body><form action=GetCityServlet><center><h1>Cities</h1><br><br><input type=hidden name=country value="+country+">");
+	      
+	      if(country.equals("India")){
+	    	  out.println("<select name=c1><option>Chennai</option><option>Bengaluru </option><option>Cochin</option></select>");
+	      }else if(country.equals("USA")){
+	    	  out.println("<select name=c1><option>Atlanta  </option><option>Dallas   </option><option>Chicago </option><option>Florida </option></select>");
+	      }else if(country.equals("Australia ")){
+	    	  out.println("<select name=c1<option>Sidny  </option><option>Canbara   </option><option>Chicago </option></select>");
+	      }
+	      out.print("<input type=submit value=submit>");
+	      out.print("</center></form></body></html>");
+
+                                            ....................
+
+            String country=request.getParameter("country");
+		String city=request.getParameter("c1");
+		 PrintWriter out=response.getWriter();
+
+		out.print("<html><body><center><h1>Summary</h1><br><br><table border=1><tr><td>country</td><td>"+country+"</td></tr><tr><td>city</td><td>"+city+"</td></tr></table></center></body></html>");
+		
+..............................................................................
+
+
+		String name=request.getParameter("name");
+		String pass=request.getParameter("pass");
+		String age=request.getParameter("age");
+		String gender=request.getParameter("r1");
+		String country=request.getParameter("s1");
+		String address=request.getParameter("address");
+		String email=request.getParameter("email");
+
+		if(name.isEmpty() || pass.isEmpty() || age.isEmpty() || gender.isEmpty() ||country.isEmpty() || address.isEmpty() || email.isEmpty()){
+			response.sendRedirect("error.html");
+		}else{
+			response.sendRedirect("home.html");
+		}
+...................................................
+
+<form action="DisplayServlet">
+<center>
+<h1>Registration</h1>
+<table>
+<tr><td>Login name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Password</td><td><input type="password" name="pass"></td></tr>
+<tr><td>Age</td><td><input type="text" name="age"></td></tr>
+<tr><td>Gender</td><td><input type="radio" name="r1">Male<input type="radio" name="r1">Female</td></tr>
+<tr><td>Select Country</td><td><select name="s1">
+  <option value="India">India</option>
+  <option value="USA">USA</option>
+  <option value="Australia">Australia</option>
+
+</select></td></tr>
+<tr><td>Address</td><td><textarea rows=4 cols=20 name="address"></textarea></td></tr>
+<tr><td>Email</td><td><input type="text" name="email"></td></tr>
+
+
+
+<tr><td></td><td><input type="submit" value="login"></td></tr>
+</table>
+</center>
+</form>
+....................................................................
+	PrintWriter out=response.getWriter();
+		String name=request.getParameter("name");
+		String pass=request.getParameter("pass");
+		String age=request.getParameter("age");
+		String gender=request.getParameter("r1");
+		String country=request.getParameter("s1");
+		String address=request.getParameter("address");
+		String email=request.getParameter("email");
+
+		if(name.isEmpty() || pass.isEmpty() || age.isEmpty() || gender.isEmpty() ||country.isEmpty() || address.isEmpty() || email.isEmpty()){
+			response.sendRedirect("error.html");
+		}else{
+			out.println("<html><body><center><form action=home.html><table><tr><td>Login name</td>"
+					+ "<td>"+name+"</td></tr><tr><td>Password</td><td>"+pass+"</td></tr><tr><td>"
+							+ "Age</td><td>"+age+"</td></tr><tr><td>Gender</td><td>"+gender+"</td></tr><tr><td>Select Country</td>"
+									+ "<td>"+country+"</td></tr><tr><td>Address</td><td>"+address+"</td></tr><tr><td>Email</td><td>"+email+"></td></tr>"
+											+ "</table><tr><td></td><td><input type=submit value=confirm></td></tr></form></center></body></html>");
+
+
+		}	}
+.............................................................................................................
+
+Cookie[] cks=request.getCookies();
+		String name=null;
+		for(Cookie c:cks){
+			if(c.getName().equals("name")){
+			System.out.println(c.getValue());
+		}}
+
+
+<form action="GetCookieServlet">
+<input type="submit" value="get cookies">
+</form>
+////////////////////////////////////////////////////////////////////////////
+<form action="CookieServlet" method="post">
+UserName <input type="text" name="name">
+<input type="submit" value="login">
+</form>
+
+PrintWriter out=response.getWriter();
+		String name=request.getParameter("name");
+         Cookie cookie=new Cookie("name",name);
+         response.addCookie(cookie);
+////////////////////////////////////////////////////////////////////////////////////////////////
+1.<form>
+Enter name<input type="text" name="name"><br>
+<input type="submit" value="show">
+</form>
+<%!String name; %>
+<% if(request.getParameter("name")!=null){
+	name=request.getParameter("name");
+	
+	%>
+	Welcome User <%=name %>
+	<%
+	}%>
+...........................................................................
+2.<FORM>
+            Login name:<INPUT TYPE="TEXT" NAME="username"><br>
+            Password:<input type="password" name="password">
+            
+            <INPUT TYPE="SUBMIT" value="Login" >
+</FORM>
+
+<%
+String name=request.getParameter("username");
+String pass=request.getParameter("password");
+
+	if(name!=null && pass!=null){
+		if(name.equals("sa") &&pass.equals("pass")){
+			out.println("valid User ") ; 
+		}
+		else {
+			out.print("Invalid user");
+
+	}}
+		
+%>
+...............................................................................................
+3.<form >
+
+<table>
+<tr><td>User name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Password</td><td><input type="password" name="pass"></td></tr>
+<tr><td></td><td><input type="submit" value="login"></td></tr>
+</table>
+</form>
+<%
+  String name=request.getParameter("name");
+  String pass=request.getParameter("pass");
+
+	if(name!=null && pass!=null){
+		if(name.equals("sa") &&pass.equals("pass")){
+			%>
+			<font color=green><b>valid User</b></font>
+			<% 
+		}
+		else {
+			%>
+<font color=red><i>Invalid User</i></font>
+<% 
+	}}
+		
+%>
+......................................................................................................
+4.<form>
+Enter number<input type="text" name="num">
+<input type="submit" value="show">
+</form>
+<table border=1 width=30%>
+<%!int num;
+String name;%>
+<%   
+    name=request.getParameter("num");
+if(name!=null){
+     num=Integer.parseInt(name);
+
+for(int i=1;i<=10;i++){
+%>
+<tr><td><%= i %></td><td>X</td><td><%= num %></td><td>=</td><td><%= num*i %></td></tr>
+<%
+}
+}%>
+</table>
+...............................................................................................................
+5.
+<form>
+Select Country<select name="s1">
+  <option value="India">India</option>
+  <option value="France">France</option>
+  <option value="Pakistan">v</option>
+  <option value="NA">NA</option>
+  <option value="China">China</option>
+
+</select>
+<input type="submit" value="Show Cities">
+</form><% 
+  String country=request.getParameter("s1");
+if(country!=null){
+if(country.equals("India"))
+	out.println("Capital is Delhi");
+
+if(country.equals("NA"))
+	out.println("Invalid Country");
+}
+%> 
+............................................................................
+6.<form>
+Select Country<select name="s1">
+  <option value="India">India</option>
+  <option value="France">France</option>
+  <option value="Pakistan">v</option>
+  <option value="NA">NA</option>
+  <option value="China">China</option>
+
+</select>
+<input type="submit" value="Show Cities">
+</form>
+ <% 
+ String country=request.getParameter("s1");
+ if(country!=null){
+ if(country.equals("India")){ %>
+ Select City<select name=c1><option>Chennai</option><option>Bengaluru </option><option>Cochin</option></select>
+ <% }} %>
+...............................................................................
+7.<form>
+<input type="submit" name="c1" value="bike">
+<input type="submit" name="c1" value="car">
+</form>
+<%
+String name=request.getParameter("c1");
+if(name!=null){
+if(name.equals("bike")){%>
+<input type="image" onclick="bike" src="bike.jpg">
+<%}
+if(name.equals("car")){%>
+<input type="image" onclick="car" src="car.jpg">
+<%
+}}%>
+.......................................................................
+8.<table>
+<tr><td>User name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Password</td><td><input type="password" name="pass"></td></tr>
+<tr><td></td><td><input type="submit" value="login"></td></tr>
+</table>
+</form>
+<%
+  String name=request.getParameter("name");
+  String pass=request.getParameter("pass");
+
+	if(name!=null && pass!=null){
+		if(name.equals("sa") &&pass.equals("pass")){
+			response.sendRedirect("home.jsp");
+		}
+		else {
+		response.sendRedirect("error.jsp");
+
+	}}
+		
+%>
+....................................................................................................
+9.<%
+  String name=request.getParameter("name");
+  String pass=request.getParameter("pass");
+
+	if(name!=null && pass!=null){
+		if(name.equals("sa") &&pass.equals("pass")){
+			session.setAttribute("name", name);
+			response.sendRedirect("home.jsp");
+		}
+		else {
+			session.setAttribute("name", name);
+			session.setAttribute("pass", pass);
+
+		  response.sendRedirect("error.jsp");
+
+	}}else if(name.length()==0 && pass.length()==0){
+		session.setAttribute("name", name);
+		session.setAttribute("pass", pass);
+		 response.sendRedirect("error.jsp");
+	}	
+%>
+                     ....................
+
+<%
+ String name=session.getAttribute("name").toString();
+  String pass=session.getAttribute("pass").toString();
+  
+	 if(name.length()==0 ){
+		 out.println("Reason:UserID Blank");
+	}	else if(pass.length()==0 ){
+		 out.println("Reason:Password Blank");
+	}	else if(!name.equals("sa")){
+		 out.println("Reason:UserID Wrong");
+	}	else if(!pass.equals("pass")){
+		 out.println("Reason:Password Wrong");
+	}	
+	 
+	%>
+...................................................................................
+             MVC
+ Register:
+        JSP
+<script type="text/javascript">
+function validate(){
+	var x=document.forms["myForm"]["name"].value;
+	var y=document.forms["myForm"]["pass"].value;
+	if(x==""){
+		alert("Name must be filled");
+		return false;
+	}
+
+}</script>
+</head>
+<body>
+<center>
+<form action="RegistrationController" method="post"name="myForm" onsubmit="return validate()">
+<h1>Registration</h1>
+<hr>
+<table>
+<tr><td>Login name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Password</td><td><input type="password" name="pass"></td></tr>
+<tr><td>Age</td><td><input type="text" name="age"></td></tr>
+<tr><td>Address</td><td><textarea rows=4 cols=20 name="address"></textarea></td></tr>
+<tr><td>Email</td><td><input type="text" name="email"></td></tr>
+<tr><td></td><td><input type="submit" value="register"></td></tr>
+</table>
+</form>
+<% if(request.getAttribute("errorReason")!=null){
+	%>
+	<center>
+	<font color="red"><%= request.getAttribute("errorReason") %></font></center>
+	<%} %>
+
+////////////////////////////////////////////////////////////////
+      CONTROLLER
+	RegisterBean register=new RegisterBean();
+	try{
+		register.setLoginName(request.getParameter("name"));
+		register.setPassword(request.getParameter("pass"));
+		register.setAge(Integer.parseInt(request.getParameter("age")));
+		register.setAddress(request.getParameter("address"));
+		register.setEmail(request.getParameter("email"));
+	}catch(NumberFormatException e1){
+		RequestDispatcher rd=request.getRequestDispatcher("Register.jsp");
+		request.setAttribute("errorReason","Please enter valid details");
+		rd.forward(request, response);
+	}
+		ProfileManagementBO bo=new ProfileManagementBO();
+		try{
+		boolean res=bo.registerUser(register);
+		if(res){
+			RequestDispatcher rd=request.getRequestDispatcher("Home.jsp");
+			request.setAttribute("loginName", register.getLoginName());
+			rd.forward(request, response);
+		}else{
+			RequestDispatcher rd=request.getRequestDispatcher("Register.jsp");
+			request.setAttribute("errorReason", "Registration failed");
+			rd.forward(request, response);
+		}
+	}catch(CustomerBusinessExcetion|CustomerException e){
+		RequestDispatcher rd=request.getRequestDispatcher("Register.jsp");
+		request.setAttribute("errorReason", e.getMessage());
+		rd.forward(request, response);
+	}
+///////////////////////////////////////////////////////////////////////////////////////
+                       BO
+		if(regBean.getLoginName()==null || regBean.getPassword()==null || regBean.getAddress()==null||regBean.getEmail()==null){
+			throw new CustomerBusinessExcetion("Please enter valid details");
+			}
+		if(regBean.getAge()<18){
+			throw new CustomerBusinessExcetion("Invalid age");}
+			return new ProfileManagementDAO().registerUser(regBean);
+		
+//////////////////////////////////////////////////////////////////////////////////////////		
+
+              DAO
+boolean result=false;
+
+        try{
+			Class.forName("com.mysql.jdbc.Driver");
+           Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+		 PreparedStatement ps=con.prepareStatement("insert into userdetails values(?,?,?,?,?)"); 
+            ps.setString(1,regBean.getLoginName());
+            ps.setString(2,regBean.getPassword());
+            ps.setInt(3,regBean.getAge());
+            ps.setString(4,regBean.getAddress());
+            ps.setString(5,regBean.getEmail());
+
+            int res=ps.executeUpdate();
+            if(res>0){
+            	result=true;
+            }
+
+        } catch (Exception e1) {
+			throw new CustomerException("Already Existing");
+   		}
+     
+		return result;
+		
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Login:
+
+DAO:
+public boolean validateLogin(LoginBean logBean) throws CustomerException
+	{
+		boolean result=false;
+	
+    try{
+		Class.forName("com.mysql.jdbc.Driver");
+       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+	 PreparedStatement ps=con.prepareStatement("select * from userdetails where loginname=? and password=?"); 
+        ps.setString(1,logBean.getLoginName());
+        ps.setString(2,logBean.getPassword());
+        ResultSet rs=ps.executeQuery();
+        while(rs.next()){
+        
+        		result =true;
+        	
+        }
+    } catch (Exception e1) {
+		throw new CustomerException("Please Enter valid details");
+
+		}
+ 
+    return result;
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+BO:
+if(logBean.getLoginName()==null || logBean.getPassword()==null ){
+			throw new CustomerBusinessExcetion("Please enter valid details");
+			}
+     
+		return new ProfileManagementDAO().validateLogin(logBean);
+//////////////////////////////////////////////////////////////////////////
+Controller:
+
+		HttpSession session=request.getSession();
+		LoginBean login=new LoginBean();
+		try{
+			login.setLoginName(request.getParameter("name"));
+			login.setPassword(request.getParameter("pass"));
+		
+		}catch(NumberFormatException e1){
+			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
+			request.setAttribute("errorReason","Please enter valid details");
+			rd.forward(request, response);
+		}
+			ProfileManagementBO bo=new ProfileManagementBO();
+			try{
+			RegisterBean res=bo.validateLogin(login);
+			
+			
+			if(res.getAge()!=0){
+				RequestDispatcher rd=request.getRequestDispatcher("Home.jsp");
+				session.setAttribute("details", res);
+				session.setAttribute("name", res.getLoginName());
+				session.setAttribute("pass", res.getPassword());
+
+				rd.forward(request, response);
+			}else{
+				RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
+				request.setAttribute("errorReason", "Login failed");
+				rd.forward(request, response);
+			}
+		}catch(CustomerBusinessExcetion | CustomerException e){
+			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
+			request.setAttribute("errorReason", e.getMessage());
+			rd.forward(request, response);
+		}
+/////////////////////////////////////////////////////////////////////
+jsp:
+<center>
+<h1>Login</h1>
+<form action="LoginController" method="post">
+
+<table>
+<tr><td>Login name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Password</td><td><input type="password" name="pass"></td></tr>
+<tr><td></td><td><input type="submit" value="Login"></td></tr>
+</table>
+</form>
+
+</center>
+
+ <% if(request.getAttribute("errorReason")!=null){
+	%>
+	<center>
+	<font color="red"><%= request.getAttribute("errorReason") %></font></center>
+	<%} %>
+//////////////////////////////////////////////////////////////////////////////////////
+View
+jsp
+<center>
+<form action="ViewProfileController" >
+
+<h1>View Profile</h1>
+<%! RegisterBean regbean; %>
+<%
+	regbean=(RegisterBean)session.getAttribute("details");
+	
+%>
+
+Name:<%=regbean.getLoginName() %> <br>
+Password:<%=regbean.getPassword() %> <br>
+Age:<%=regbean.getAge() %><br>
+Address:<%=regbean.getAddress() %><br>
+Email:<%=regbean.getEmail() %><br>
+</form>
+
+<a href="EditProfile.jsp">Edit Profile</a> <br>
+<a href="ChangePassword.jsp">ChangePassword</a> <br>
+
+</center>
+//////////////////////////////////////////////////
+controller
+RegisterBean reg=new RegisterBean();
+		try{
+			reg.setLoginName(request.getParameter("name"));
+			reg.setPassword(request.getParameter("pass"));
+		
+		}catch(NumberFormatException e1){
+			RequestDispatcher rd=request.getRequestDispatcher("Login.jsp");
+			request.setAttribute("errorReason","Please enter valid details");
+			rd.forward(request, response);
+		}
+			ProfileManagementBO bo=new ProfileManagementBO();
+			RegisterBean res;
+			try {
+				res = bo.viewProfile(reg);
+				if(res.getLoginName()!=null){
+					RequestDispatcher rd=request.getRequestDispatcher("ViewProfile.jsp");
+					request.setAttribute("Details",res);
+					rd.forward(request, response);
+				}else{
+					RequestDispatcher rd=request.getRequestDispatcher("ViewProfile.jsp");
+					request.setAttribute("errorReason", "failed");
+					rd.forward(request, response);
+				}
+			} 
+			catch (SQLException | CustomerBusinessExcetion e) {
+				RequestDispatcher rd=request.getRequestDispatcher("ViewProfile.jsp");
+				request.setAttribute("errorReason", e.getMessage());
+				rd.forward(request, response);
+			}
+///////////////////////////////////////////////////////////////
+
+DAo
+		  RegisterBean rb=new RegisterBean();
+
+          try{
+				Class.forName("com.mysql.jdbc.Driver");
+		       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			 PreparedStatement ps=con.prepareStatement("select * from userdetails where loginname=? and password=?"); 
+		        ps.setString(1,regBean.getLoginName());
+		        ps.setString(2,regBean.getPassword());
+
+		        ResultSet rs=ps.executeQuery();
+		        while(rs.next()){
+		              rb.setLoginName(rs.getString(1));	
+		              rb.setPassword(rs.getString(2));	
+		              rb.setAge(rs.getInt(3));	
+		              rb.setAddress(rs.getString(4));	
+		              rb.setEmail(rs.getString(5));	
+		           
+
+		        }
+		    } catch (ClassNotFoundException e1) {
+                    throw new CustomerBusinessExcetion(e1.getMessage());
+				}catch (SQLException e1) {
+					 throw new CustomerBusinessExcetion(e1.getMessage());
+				}
+		return rb;
+
+///////////////////////////////////////////////
+edit
+jsp
+<h1>Edit profile</h1>
+<%! RegisterBean regbean; %>
+<%
+	regbean=(RegisterBean)session.getAttribute("details");
+	
+%>
+<form action="EditController" method="post">
+<table>
+<tr><td>Login name</td><td><input type="text" name="name" value=<%=regbean.getLoginName() %>></td></tr>
+<tr><td>Password</td><td><input type="password" name="pass" value=<%=regbean.getPassword() %>></td></tr>
+<tr><td>Age</td><td><input type="text" name="age" value=<%=regbean.getAge() %>></td></tr>
+<tr><td>Address</td><td><input type="text" name="address" value=<%=regbean.getAddress() %>></td></tr>
+<tr><td>Email</td><td><input type="text" name="email" value=<%=regbean.getEmail() %>></td></tr>
+<tr><td></td><td><input type="submit" value="submit" ></td></tr>
+</table>
+</form>
+</center>
+
+<% if(request.getAttribute("errorReason")!=null){
+	%>
+	<center>
+	<font color="red"><%= request.getAttribute("errorReason") %></font></center>
+	<%} %>
+///////////////////////////////////////////////////////
+controller
+	 HttpSession session=request.getSession();
+		 RegisterBean login=new RegisterBean();
+         String name=session.getAttribute("name").toString();
+         String pass=session.getAttribute("pass").toString();
+
+       try{
+		    login.setLoginName(name);
+			login.setPassword(pass);
+		    login.setAge(Integer.parseInt(request.getParameter("age")));
+		    login.setAddress(request.getParameter("address"));
+		    login.setEmail(request.getParameter("email"));
+		}catch(NumberFormatException e1){
+			RequestDispatcher rd=request.getRequestDispatcher("EditProfile.jsp");
+			request.setAttribute("errorReason","Please enter valid details");
+			rd.forward(request, response);
+		}
+			ProfileManagementBO bo=new ProfileManagementBO();
+			try{
+			boolean res=bo.editUser(login);
+			
+			
+			if(res){
+				RequestDispatcher rd=request.getRequestDispatcher("EditProfile.jsp");
+				//session.setAttribute("details", res);
+                  request.setAttribute("errorReason", "success");
+				rd.forward(request, response);
+			}else{
+				RequestDispatcher rd=request.getRequestDispatcher("EditProfile.jsp");
+				request.setAttribute("errorReason", "failed");
+				rd.forward(request, response);
+			}
+		}catch(CustomerBusinessExcetion e){
+			RequestDispatcher rd=request.getRequestDispatcher("EditProfile.jsp");
+			request.setAttribute("errorReason", e.getMessage());
+			rd.forward(request, response);
+		}
+///////////////////////////////////////////////////////////////////////////////////////////////
+DAO
+boolean result=false;
+
+         try{
+				Class.forName("com.mysql.jdbc.Driver");
+		       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+			   PreparedStatement ps=con.prepareStatement("update userdetails set age=?,address=?,email=? where loginname=? and password=?"); 
+		        ps.setInt(1,regBean.getAge());
+		        ps.setString(2,regBean.getAddress());
+		        ps.setString(3,regBean.getEmail());
+		        ps.setString(4,regBean.getLoginName());
+		        ps.setString(5,regBean.getPassword());
+
+	            int res=ps.executeUpdate();
+	            if(res>0)
+	            {
+	            	result=true;
+	            }
+		    } catch (ClassNotFoundException e1) {
+                   throw new CustomerBusinessExcetion(e1.getMessage());
+				}
+         catch (SQLException e1) {
+			 throw new CustomerBusinessExcetion(e1.getMessage());
+		}
+		return result;
+///////////////////////////////////////////////////////////
+password
+jsp
+<script type="text/javascript">
+function validate(){
+	var x=document.forms["myForm"]["newpassword"].value;
+	var y=document.forms["myForm"]["confirmpassword"].value;
+	if(x.localeCompare(y)!=0){
+		alert("Please enter same password");
+		return false;
+	}
+
+}</script>
+</head>
+<body>
+<%! RegisterBean regbean; %>
+<%
+	regbean=(RegisterBean)session.getAttribute("details");
+	
+%>
+<center>
+<form action="ChangePasswordController" method="post" name="myForm" onsubmit="return validate()">
+<h1>Change Password</h1>
+<table>
+<tr><td>Login name</td><td><input type="text" name="name"value=<%=regbean.getLoginName() %>></td></tr>
+<tr><td>Old Password</td><td><input type="password" name="oldpassword"></td></tr>
+<tr><td>New Password</td><td><input type="password" name="newpassword"></td></tr>
+<tr><td>Confirm Password</td><td><input type="password" name="confirmpassword"></td></tr>
+
+<tr><td></td><td><input type="submit" value="submit"></td></tr>
+</table>
+</form>
+</center>
+<% if(request.getAttribute("errorReason")!=null){
+	%>
+	<center>
+	<font color="red"><%= request.getAttribute("errorReason") %></font></center>
+	<%} %>
+</body>
+///////////////////////////////////////////////////////////////
+controller
+HttpSession session=request.getSession();
+		ChangePasswordBean pass=new ChangePasswordBean();
+       String name=session.getAttribute("name").toString();
+		String oldpassword=request.getParameter("oldpassword");
+		String newpassword=request.getParameter("newpassword");
+		String confirmpassword=request.getParameter("confirmpassword");	
+	      try{
+		pass.setOldpassword(oldpassword);
+		pass.setNewpassword(newpassword);
+		pass.setConfirmpassword(confirmpassword);
+	      pass.setLoginName(name);
+			}catch(NumberFormatException e1){
+				RequestDispatcher rd=request.getRequestDispatcher("ChangePassword.jsp");
+				request.setAttribute("errorReason","Please enter valid details");
+				rd.forward(request, response);
+			}
+				ProfileManagementBO bo=new ProfileManagementBO();
+				try{
+				boolean res=bo.changePassword(pass);
+				
+				
+				if(res){
+					RequestDispatcher rd=request.getRequestDispatcher("ChangePassword.jsp");
+					//session.setAttribute("details", res);
+	                  request.setAttribute("errorReason", "success");
+					rd.forward(request, response);
+				}else{
+					RequestDispatcher rd=request.getRequestDispatcher("ChangePassword.jsp");
+					request.setAttribute("errorReason", "failed");
+					rd.forward(request, response);
+				}
+			}catch(CustomerBusinessExcetion e){
+				RequestDispatcher rd=request.getRequestDispatcher("ChangePassword.jsp");
+				request.setAttribute("errorReason", e.getMessage());
+				rd.forward(request, response);
+			}
+///////////////////////////////////////////////////////////////////////////
+DAO
+
+		boolean result=false;
+
+     try{
+			Class.forName("com.mysql.jdbc.Driver");
+	       Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tempdb","root","dsrc");
+		   PreparedStatement ps=con.prepareStatement("update userdetails set password=? where loginname=? and password=?"); 
+	        ps.setString(1,cBean.getNewpassword());
+	        ps.setString(2,cBean.getLoginName());
+	        ps.setString(3,cBean.getOldpassword());
+
+            int res=ps.executeUpdate();
+            if(res>0)
+            {
+            	result=true;
+            }
+	    } catch (ClassNotFoundException e1) {
+               throw new CustomerBusinessExcetion(e1.getMessage());
+			}
+     catch (SQLException e1) {
+		 throw new CustomerBusinessExcetion(e1.getMessage());
+	}
+	return result;
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
